@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Website cá nhân - Giáo viên Toán THPT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      color: #333;
+      background: #f4f6f8;
+    }
+
+    header {
+      background: #1e3a8a;
+      color: white;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    nav h1 {
+      font-size: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+      background: white;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #1e3a8a;
+    }
+
+    .hero {
+      text-align: center;
+      background: linear-gradient(to right, #1e3a8a, #2563eb);
+      color: white;
+    }
+
+    .hero h2 {
+      color: white;
+      font-size: 32px;
+    }
+
+    .hero p {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .skills li {
+      margin-bottom: 10px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #f1f5f9;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <h1>GV Toán THPT</h1>
+    <ul>
+      <li><a href="#gioithieu">Giới thiệu</a></li>
+      <li><a href="#kinang">Chuyên môn</a></li>
+      <li><a href="#tailieu">Tài liệu</a></li>
+      <li><a href="#lienhe">Liên hệ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Giáo viên Toán THPT</h2>
+  <p>Dạy học bằng tâm huyết – Truyền cảm hứng bằng Toán học</p>
+</section>
+
+<section id="gioithieu">
+  <h2>Giới thiệu</h2>
+  <p>
+    Xin chào! Tôi là giáo viên Toán THPT với nhiều năm kinh nghiệm giảng dạy
+    chương trình Toán 10 – 11 – 12.  
+    Mục tiêu của tôi là giúp học sinh **hiểu bản chất Toán học**, học tập chủ động
+    và đạt kết quả cao trong các kỳ thi.
+  </p>
+</section>
+
+<section id="kinang">
+  <h2>Chuyên môn & Kỹ năng</h2>
+  <ul class="skills">
+    <li>✔ Giảng dạy Toán THPT (Đại số – Hình học – Giải tích)</li>
+    <li>✔ Ôn thi tốt nghiệp THPT & tuyển sinh</li>
+    <li>✔ Soạn đề kiểm tra, đề thi theo ma trận</li>
+    <li>✔ Sử dụng LaTeX, GeoGebra, TikZ trong giảng dạy</li>
+    <li>✔ Dạy học phát triển năng lực học sinh</li>
+  </ul>
+</section>
+
+<section id="tailieu">
+  <h2>Tài liệu & Hoạt động</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>📘 Phiếu học tập</h3>
+      <p>Hệ thống phiếu học tập theo chương, có hình minh họa trực quan.</p>
+    </div>
+    <div class="card">
+      <h3>📝 Đề kiểm tra</h3>
+      <p>Đề kiểm tra, đề thi học kỳ bám sát cấu trúc Bộ GD&ĐT.</p>
+    </div>
+    <div class="card">
+      <h3>📊 SKKN & Nghiên cứu</h3>
+      <p>Sáng kiến kinh nghiệm về đổi mới phương pháp dạy học Toán.</p>
+    </div>
+  </div>
+</section>
+
+<section id="lienhe">
+  <h2>Liên hệ</h2>
+  <p>Email: <strong>giaovientoan@email.com</strong></p>
+  <p>Trường: <strong>THPT ………………………</strong></p>
+</section>
+
+<footer>
+  © 2025 – Website cá nhân Giáo viên Toán THPT
+</footer>
+
+</body>
+</html>
