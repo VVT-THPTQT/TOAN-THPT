@@ -1,160 +1,102 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <!-- MathJax hiển thị công thức Toán -->
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <head>
 <meta charset="UTF-8">
-<title>Học Toán THPT | Phòng học cá nhân</title>
+<title>Giáo viên Toán THPT</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- KaTeX -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<!-- MathJax -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f4f6f8;
-  color: #222;
-  line-height: 1.7;
-}
-header {
-  background: #1e3a8a;
-  color: white;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-header img { height: 50px; }
-.container { max-width: 1100px; margin: auto; padding: 20px; }
-
-.grade-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 20px;
-}
-.grade {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.grade:hover { background: #dbeafe; }
-
-.controls {
-  margin: 20px 0;
-}
-button {
-  padding: 8px 14px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.lesson {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-.sepia {
-  background: #f5ecd9;
-  color: #3b2f2f;
-}
-
-.xl {
-  font-size: 20px;
-}
+body { font-family: Arial; margin: 0; background:#f4f6f8; }
+header { background:#1e3a8a; color:white; padding:20px; text-align:center; }
+section { max-width:900px; margin:auto; background:white; padding:30px; margin-top:20px; border-radius:8px; }
+h2 { color:#1e3a8a; }
+a { color:#2563eb; }
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="logo_truong.png" alt="Logo">
-  <h2>HỌC TẬP TOÁN THPT – PHÒNG HỌC CÁ NHÂN</h2>
+  <img src="logo_truong.png" height="80"><br>
+  <h1>Giáo viên Toán THPT</h1>
+  <p>Dạy học bằng Toán – Nuôi dưỡng tư duy</p>
 </header>
 
-<div class="container">
+<section>
+<h2>📐 Công thức Toán</h2>
+<p>Hàm số bậc hai:</p>
+$$y = ax^2 + bx + c \quad (a \ne 0)$$
+</section>
 
-<!-- KHỐI LỚP -->
-<h2>📘 Chọn khối lớp</h2>
-<div class="grade-grid">
-  <div class="grade" onclick="loadLesson(10)">Lớp 10</div>
-  <div class="grade" onclick="loadLesson(11)">Lớp 11</div>
-  <div class="grade" onclick="loadLesson(12)">Lớp 12</div>
-</div>
+<section>
+<section id="tailieu">
+  <h2>📚 Tài liệu & Bài giảng Toán</h2>
 
-<!-- ĐIỀU KHIỂN -->
-<div class="controls">
-  <button onclick="toggleSepia()">🌙 Chế độ Sepia</button>
-  <button onclick="toggleXL()">🔍 Cỡ chữ XL</button>
-  <button onclick="downloadWord()">📥 Tải Word</button>
-</div>
+  <h3>🧮 Bài giảng: Hàm số bậc hai</h3>
+  <p>
+    Xét hàm số:
+    \[
+      y = ax^2 + bx + c \quad (a \ne 0)
+    \]
+  </p>
 
-<!-- BÀI GIẢNG -->
-<div id="lesson" class="lesson">
-  <i>Hãy chọn khối lớp để xem bài giảng.</i>
-</div>
+  <p>
+    Trục đối xứng của đồ thị là:
+    \[
+      x = -\frac{b}{2a}
+    \]
+  </p>
 
-</div>
+  <p>
+    Tọa độ đỉnh của parabol:
+    \[
+      I\left(-\frac{b}{2a}, -\frac{\Delta}{4a}\right), \quad \Delta = b^2 - 4ac
+    \]
+  </p>
 
-<script>
-function loadLesson(grade) {
-  const lesson = document.getElementById("lesson");
-  if (grade === 10) {
-    lesson.innerHTML = `
-    <h3>Bài: Hàm số bậc hai</h3>
-    <p>Xét hàm số:</p>
-    <p>\\(y = ax^2 + bx + c \\ (a \\neq 0)\\)</p>
-    <p>Đỉnh của parabol có tọa độ:</p>
-    <p>\\(I\\left(-\\frac{b}{2a}, -\\frac{\\Delta}{4a}\\right)\\)</p>
-    <hr>
-    <b>Bài tập tương tự:</b>
-    <p>Cho hàm số \\(y = 2x^2 - 4x + 1\\). Tìm đỉnh và vẽ đồ thị.</p>
-    `;
-  }
-  if (grade === 11) {
-    lesson.innerHTML = `
-    <h3>Bài: Giới hạn dãy số</h3>
-    <p>\\(\\lim_{n \\to \\infty} \\frac{1}{n} = 0\\)</p>
-    <b>Bài tập tương tự:</b>
-    <p>Tính \\(\\lim_{n \\to \\infty} \\frac{3}{n}\\).</p>
-    `;
-  }
-  if (grade === 12) {
-    lesson.innerHTML = `
-    <h3>Bài: Đạo hàm</h3>
-    <p>Nếu \\(y = x^n\\) thì \\(y' = nx^{n-1}\\)</p>
-    <b>Bài tập tương tự:</b>
-    <p>Tính đạo hàm của \\(y = x^3 - 2x\\).</p>
-    `;
-  }
-  renderMathInElement(lesson);
-}
+  <hr>
 
-function toggleSepia() {
-  document.body.classList.toggle("sepia");
-}
-function toggleXL() {
-  document.body.classList.toggle("xl");
-}
+  <h3>📄 Tải tài liệu PDF</h3>
+  <ul>
+    <li>
+      <a href="tailieu/ham-so-bac-hai.pdf" target="_blank">
+        📘 Phiếu học tập: Hàm số bậc hai
+      </a>
+    </li>
+    <li>
+      <a href="tailieu/de-on-tap-giuaky.pdf" target="_blank">
+        📝 Đề ôn tập giữa kỳ
+      </a>
+    </li>
+  </ul>
+</section>
 
-function downloadWord() {
-  alert(
-`MÔ PHỎNG XUẤT WORD:
-- Công thức được chuyển sang MathML
-- Khi mở bằng Word → tự thành Equation chỉnh sửa
+</section>
 
-(Bước tiếp theo cần backend hoặc Google Docs API)`
-  );
-}
-</script>
+<section>
+<h2>📞 Liên hệ</h2>
+<p>Email: votrietqt@gmail.com</p>
+</section>
 
 </body>
 </html>
+
+
+
+
+
