@@ -1,102 +1,196 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <!-- MathJax hiển thị công thức Toán -->
+<head>
+<meta charset="UTF-8">
+<title>Học Toán THPT – Học Hiểu, Học Sâu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- MathJax hiển thị LaTeX -->
 <script>
   MathJax = {
     tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
   };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<head>
-<meta charset="UTF-8">
-<title>Giáo viên Toán THPT</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- MathJax -->
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <style>
-body { font-family: Arial; margin: 0; background:#f4f6f8; }
-header { background:#1e3a8a; color:white; padding:20px; text-align:center; }
-section { max-width:900px; margin:auto; background:white; padding:30px; margin-top:20px; border-radius:8px; }
-h2 { color:#1e3a8a; }
-a { color:#2563eb; }
+:root {
+  --primary: #2563eb;
+  --secondary: #0ea5e9;
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --sepia: #f5ecd9;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.controls {
+  text-align: center;
+  margin: 15px;
+}
+
+.controls button {
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.grade-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 20px;
+}
+
+.grade {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.grade h2 {
+  color: var(--primary);
+}
+
+.section {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+  color: var(--primary);
+}
+
+.pdf-list a {
+  display: block;
+  margin: 8px 0;
+  text-decoration: none;
+  color: var(--secondary);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+/* Sepia mode */
+body.sepia {
+  background: var(--sepia);
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="logo_truong.png" height="80"><br>
-  <h1>Giáo viên Toán THPT</h1>
-  <p>Dạy học bằng Toán – Nuôi dưỡng tư duy</p>
+  <h1>📐 HỌC TOÁN THPT</h1>
+  <p>Học hiểu bản chất – Rèn tư duy – Tự tin thi cử</p>
 </header>
 
-<section>
-<h2>📐 Công thức Toán</h2>
-<p>Hàm số bậc hai:</p>
-$$y = ax^2 + bx + c \quad (a \ne 0)$$
-</section>
+<div class="controls">
+  <button onclick="toggleSepia()">🌙 Chế độ Sepia</button>
+  <button onclick="fontSize(1)">A+</button>
+  <button onclick="fontSize(-1)">A-</button>
+</div>
 
-<section>
-<section id="tailieu">
-  <h2>📚 Tài liệu & Bài giảng Toán</h2>
+<main>
 
-  <h3>🧮 Bài giảng: Hàm số bậc hai</h3>
-  <p>
-    Xét hàm số:
-    \[
-      y = ax^2 + bx + c \quad (a \ne 0)
-    \]
-  </p>
+<!-- KHỐI LỚP -->
+<div class="grade-boxes">
+  <div class="grade">
+    <h2>📘 TOÁN 10</h2>
+    <p>Hàm số – Mệnh đề – Hình học</p>
+  </div>
+  <div class="grade">
+    <h2>📗 TOÁN 11</h2>
+    <p>Dãy số – Lượng giác – Hình không gian</p>
+  </div>
+  <div class="grade">
+    <h2>📕 TOÁN 12</h2>
+    <p>Giải tích – OXYZ – Ôn thi THPT</p>
+  </div>
+</div>
 
-  <p>
-    Trục đối xứng của đồ thị là:
-    \[
-      x = -\frac{b}{2a}
-    \]
-  </p>
+<!-- BÀI GIẢNG MẪU -->
+<div class="section">
+<h2>🧮 Bài giảng mẫu – Toán 10</h2>
 
-  <p>
-    Tọa độ đỉnh của parabol:
-    \[
-      I\left(-\frac{b}{2a}, -\frac{\Delta}{4a}\right), \quad \Delta = b^2 - 4ac
-    \]
-  </p>
+<b>Bài toán:</b> Giải phương trình bậc hai  
+$$ax^2 + bx + c = 0 \quad (a \ne 0)$$
 
-  <hr>
+<b>Lời giải:</b><br>
+Ta tính biệt thức:
+$$\Delta = b^2 - 4ac$$
 
-  <h3>📄 Tải tài liệu PDF</h3>
-  <ul>
-    <li>
-      <a href="tailieu/ham-so-bac-hai.pdf" target="_blank">
-        📘 Phiếu học tập: Hàm số bậc hai
-      </a>
-    </li>
-    <li>
-      <a href="tailieu/de-on-tap-giuaky.pdf" target="_blank">
-        📝 Đề ôn tập giữa kỳ
-      </a>
-    </li>
-  </ul>
-</section>
+- Nếu $\Delta > 0$ ⇒ phương trình có 2 nghiệm phân biệt  
+$$x_{1,2} = \frac{-b \pm \sqrt{\Delta}}{2a}$$
 
-</section>
+- Nếu $\Delta = 0$ ⇒ phương trình có nghiệm kép  
+$$x = \frac{-b}{2a}$$
 
-<section>
-<h2>📞 Liên hệ</h2>
-<p>Email: votrietqt@gmail.com</p>
-</section>
+- Nếu $\Delta < 0$ ⇒ phương trình vô nghiệm
+
+<b>Bài tập luyện tập:</b>  
+Giải phương trình:  
+$$2x^2 - 3x - 2 = 0$$
+</div>
+
+<!-- KHO PDF -->
+<div class="section">
+<h2>📚 Kho tài liệu PDF</h2>
+<div class="pdf-list">
+  <a href="pdf/toan10_chuong1.pdf">📄 Toán 10 – Chương 1</a>
+  <a href="pdf/toan11_chuong2.pdf">📄 Toán 11 – Chương 2</a>
+  <a href="pdf/toan12_on_thi.pdf">📄 Toán 12 – Ôn thi</a>
+</div>
+</div>
+
+</main>
+
+<footer>
+© 2025 – Website học Toán THPT miễn phí
+</footer>
+
+<script>
+function toggleSepia() {
+  document.body.classList.toggle("sepia");
+}
+
+function fontSize(step) {
+  let size = parseFloat(getComputedStyle(document.body).fontSize);
+  document.body.style.fontSize = (size + step) + "px";
+}
+</script>
 
 </body>
 </html>
-
-
-
-
-
