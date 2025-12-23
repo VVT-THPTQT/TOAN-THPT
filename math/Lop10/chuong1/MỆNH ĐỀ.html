@@ -1,0 +1,306 @@
+
+\section{MỆNH ĐỀ}
+\subsection{Tóm tắt lí thuyết}
+\begin{khung4}{Tóm tắt kiến thức}
+	\begin{itemize}
+		\item Mỗi mệnh đề toán học phải hoặc đúng hoặc sai. Một mệnh đề toán học không thể vừa đúng, vừa sai.
+		\item Cho mệnh đề $P$. Mệnh đề \lq\lq Không phải $P$\rq\rq \ được gọi là mệnh đề phủ định của mệnh đề $P$ và kí hiệu là $\overline{P}$. Mệnh đề $\overline{P}$ đúng khi $P$ sai. Mệnh đề $\overline{P}$ sai khi $P$ đúng.
+		\item Mệnh đề $P \Rightarrow Q$ chỉ sai khi $P$ đúng và $Q$ sai; đúng trong các trường hợp còn lại.
+		\item Mệnh đề $Q \Rightarrow P$ được gọi là mệnh đề đảo của mệnh đề $P \Rightarrow Q$.
+		\item Nếu cả hai mệnh đề $P \Rightarrow Q$ và $Q \Rightarrow P$ đều đúng, ta nói $P$ và $Q$ là hai mệnh đề tương đương, kí hiệu $P \Leftrightarrow Q$.
+		\item Cho mệnh đề chứa biến \lq\lq $P(x), x \in X$\rq\rq.
+		\begin{itemize}
+			\item[+] Mỗi phát biểu \lq\lq$\forall x \in X, P(x)$\rq\rq \ và \lq\lq$\exists x \in X, P(x)$\rq\rq \ là một mệnh đề.
+			\item[+] Phủ định của mỗi mệnh đề trên lần lượt là mệnh đề \lq\lq$\exists x \in X, \overline{P(x)}$\rq\rq \ và \lq\lq$\forall x \in X, \overline{P(x)}$\rq\rq.
+		\end{itemize}
+	\end{itemize}
+\end{khung4}
+\begin{vd}%[0D1Y1-1]
+	Trong các câu sau, câu nào là mệnh đề? câu nào không phải là mệnh đề?
+	\begin{enumerate}
+		\item Phương trình $x^2 - 4$ có nghiệm nguyên dương;
+		\item $3+1=6$;
+		\item Có bao nhiêu người ghét bạn?
+		\item Trời hôm nay đẹp quá!
+	\end{enumerate}
+	\loigiai{\begin{enumerate}
+			\item Vì phương trình $x^2 - 4$ có nghiệm nguyên dương $x=2$ nên câu a) là đúng. Do đó câu a là mệnh đề.
+			\item $3+1=6$ là mệnh đề sai vì $3+1=4$. Do đó câu b) là mệnh đề.
+			\item Câu c) là câu hỏi  nêu lên ý kiến của người nói. Do đó không xác định được tính đúng sai. Vậy câu c)  không phải là mệnh đề.
+			\item Câu  d) là câu cảm thán nêu lên ý kiến của người nói. Do đó không xác định được tính đúng sai. Vậy  câu d) không phải là mệnh đề.
+	\end{enumerate}}
+\end{vd}
+\begin{note}
+	Những mệnh đề liên quan đến toán học (Các mệnh đề câu a, câu b, trong ví dụ 1) được gọi là \textbf{mệnh đề toán học}.
+\end{note}
+\begin{vd}
+	Xét câu \lq \lq $x>1$\rq \rq. Hãy tìm hai giá trị thực của $x$ đã cho, ta nhận được một mệnh đề đúng và một mệnh đề sai.
+	\loigiai{\begin{itemize}
+			\item Cho $x=5$ ta được mệnh đề đúng.
+			\item Cho $x=0$ ta được mệnh đề sai.
+		\end{itemize}}
+\end{vd}
+
+\begin{vd}
+	Phát biểu mệnh đề phủ định của mỗi mệnh đề sau:
+	\begin{enumerate}
+		\item $25$ là số chính phương;
+		\item Hình chữ nhật không phải là hình vuông.
+	\end{enumerate}
+	\loigiai{\begin{enumerate}
+			\item $25$ không phải là số chính phương;
+			\item Hình chữ nhật là hình vuông.
+		\end{enumerate}
+	}
+\end{vd}
+
+\begin{vd}%[0D1Y1-4]
+	Cho tam giác $ABC$. Xét hai mệnh đề:\\
+	$P$: \lq \lq Tam giác $ABC$ có hai góc bằng $60^\circ$\rq \rq .\\
+	$Q$: \lq \lq Tam giác $ABC$ đều\rq \rq. \\
+	Hãy phát biểu  mệnh đề $P \Rightarrow Q$ và nhận xét tính đúng sai của mệnh đề đó.
+	\loigiai{
+		$P \Rightarrow Q$: \lq \lq Nếu tam giác $ABC$ có hai góc bằng $60^\circ$ thì tam giác $ABC$ đều\rq \rq.\\
+		Mệnh đề kéo theo này là mệnh đề đúng.
+	}
+\end{vd}
+
+\begin{vd}%[0D1Y1-4]
+	Cho tam giác $ABC$. Xét hai mệnh đề:\\
+	$P$: \lq \lq Tam giác $ABC$ cân và có một góc bằng $60^\circ$\rq \rq.\\
+	$Q$: \lq \lq Tam giác $ABC$ đều\rq \rq. \\
+	Hãy phát biểu  mệnh đề đảo của mệnh đề $P \Rightarrow Q$ và nhận xét tính đúng sai của mệnh đề đó.
+	\loigiai{
+		Ta có $Q \Rightarrow P$: \lq \lq Nếu tam giác $ABC$ cân và có một góc bằng $60^\circ$ thì tam giác $ABC$ đều\rq \rq.\\
+		Mệnh đề đảo này là mệnh đề đúng.
+	}
+\end{vd}
+
+\begin{vd}%[0D1Y1-4]
+	Cho hai mệnh đề:\\
+	$P$: \lq \lq tam giác $ABC$ có hai cạnh bằng nhau\rq \rq. \\
+	$Q$: \lq \lq tam giác $ABC$ cân\rq \rq. \\
+	Hãy phát biểu mệnh đề tương đương $P \Leftrightarrow Q$ và xác định tính đúng sai của mệnh đề tương đương này.
+	\loigiai{
+		$P \Leftrightarrow Q$: \lq \lq Tam giác $ABC$ có hai cạnh bằng nhau là điều kiện và đủ để tam giác $ABC$ cân\rq \rq. 
+		Mệnh đề tương đương này đúng vì cả hai mệnh đề $P \Rightarrow Q$ và $Q \Rightarrow P$ đều đúng.}
+\end{vd}
+
+\begin{vd}%[0D1Y1-5]
+	Cho mệnh đề $P\colon \forall x \in \mathbb{N}, x-2>0$. Tìm mệnh đề phủ định của mệnh đề $P$. Xét tính đúng sai của mệnh đề  $\overline{P}$.
+	\loigiai{Ta có $\overline{P}\colon \exists x \in \mathbb{N}, x-2\leq 0$. \\
+		Đây là mệnh đề đúng, vì với $x=0$ thì $x-2=-2<0$ hay với $x=1$ thì $x-2=-1<0$, hoặc $x=2$ thì $x-2=0$.
+	}
+\end{vd}
+%% GV2 : Doãn Thịnh
+\subsection{Các dạng toán thường gặp}
+\begin{dang}{Nhận diện, xét tính đúng sai của mệnh đề, mệnh đề chứa biến}
+	\begin{itemize}
+		\item Mệnh đề phải là một câu khẳng định có tính đúng – sai rõ ràng. Có thể chưa biết nó đúng hay là sai, nhưng chắc chắn nó chỉ có thể đúng hay là sai.
+		\item Có những mệnh đề mà tính đúng – sai của nó gắn với một thời gian, địa điểm cụ thể.
+		\item Mệnh đề chứa biến là câu phụ thuộc vào biến $x$. Mệnh đề chứa biến chưa phải là mệnh đề.
+	\end{itemize}
+\end{dang}
+\begin{vd}%[0D1Y1-1]
+	Trong các câu sau, câu nào là mệnh đề, câu nào không phải là mệnh đề?
+	\begin{enumerate}
+		\item Phương trình $3x^2-5x+2=0$ có nghiệm nguyên.
+		\item $5<7-3$.
+		\item Có bao nhiêu dấu hiệu nhận biết hai tam giác đồng dạng?
+		\item Đấy là cách xử lí khôn ngoan!
+	\end{enumerate}
+	\loigiai
+	{\begin{enumerate}
+			\item Vì phương trình $3x^2-5x+2=0$ có nghiệm nguyên $x=1$ nên câu a) đúng.\\
+			\item Câu b) là sai. Do đó câu a) và câu b) là những mệnh đề.\\
+			\item Câu c) là câu hỏi; câu d) là câu cảm thán, nêu lên ý kiến của người nói. Do đó, không xác định được tính đúng sai. Vậy các câu c) và d) không phải là mệnh đề.
+	\end{enumerate}}
+\end{vd}
+\begin{vd}%[0D1B1-1]
+	Cho mệnh đề chứa biến $P(x)= 3x+5\le x^2$ với $x$ là số thực. Mệnh đề nào  đúng trong các mệnh đề sau $P(3)$, $P(1)$, $P(4)$, $P(5)$?
+	\loigiai{Ta có 
+		\begin{itemize}
+			\item $P(3)= 3\cdot3+5=14\le 3^2$ là mệnh đề sai.
+			\item $P(4) =3\cdot4+5=17\le 4^2$ là mệnh đề sai.
+			\item $P(1)=3\cdot1+5=8\le 1^2$ là mệnh đề sai.
+			\item $P(5) =3\cdot5+5=20\le 5^2$ là mệnh đề đúng.
+	\end{itemize}}
+\end{vd}
+\begin{vd}%[0D1B1-1]
+	Cho mệnh đề \lq\lq $\forall x\in \mathbb{R},x^2-2+a>0$\rq\rq, với $a$ là số thực cho trước. Tìm $a$ để mệnh đề đúng.
+	\loigiai{
+		Nhận xét: $x^2\ge 0, \forall x\in \mathbb{R}$ và $x^2-2+a>0$ $ \Leftrightarrow x^2>2-a$,
+		$\forall x\in \mathbb{R};\\
+		x^2-2+a>0 \Leftrightarrow 2-a<0 \Leftrightarrow a>2.$}
+\end{vd}
+\begin{vd}%[0D1B1-1]
+	Xét tính đúng sai của mệnh đề: \lq\lq Phương trình $x^2+7x-2=0$ có $2$ nghiệm trái dấu\rq\rq.
+	\loigiai{
+		Phương trình $x^2+7x-2=0$ có $a\cdot c=1\cdot (-2)<0$ nên nó có $2$ nghiệm trái dấu. \\
+		Do đó đây là mệnh đề đúng.
+	}
+\end{vd}
+\begin{vd}%[0D1Y1-1]
+	Câu nào sau đây là mệnh đề và cho biết tính đúng – sai của nó?
+	\begin{enumerate}
+		\item Tổng các góc trong một tam giác bằng $180^\circ$.
+		\item Tổng các góc trong một hình vuông có bằng $360^\circ$ không?
+	\end{enumerate}
+	\loigiai{
+		\begin{enumerate}
+			\item Mệnh đề đúng.
+			\item Không phải là mệnh đề, vì là câu hỏi.
+	\end{enumerate}}
+\end{vd}
+
+\begin{vd}%[0D1Y1-1]
+	Câu nào sau đây là mệnh đề và cho biết tính đúng – sai của nó?
+	\begin{enumerate}
+		\item $\left(3+4\right)\left(2+6\right)=73$.
+		\item Chiều nay trời mưa.
+	\end{enumerate}
+	\loigiai{
+		\begin{enumerate}
+			\item Là mệnh đề sai.
+			\item Không phải là mệnh đề vì phụ thuộc vào thời gian.
+	\end{enumerate}}
+\end{vd}
+\begin{dang}{Phủ định của một mệnh đề}
+	Thêm (hoặc bớt) từ “không” (hoặc “không phải”) vào trước vị ngữ của mệnh đề đó.
+\end{dang}
+\begin{vd}%[0D1Y1-3]
+	Phát biểu mệnh đề phủ định của mỗi mệnh đề sau 
+	\begin{enumerate}
+		\item $P$: \lq\lq$17$ là số chính phương\rq\rq.
+		\item $Q$: \lq\lq Hình hộp không phải là hình lăng trụ\rq\rq.
+	\end{enumerate}
+	\loigiai{
+		\begin{enumerate}
+			\item Mệnh đề phủ định của $P$ là $\overline{P}$: \lq\lq $17$ không phải là số chính phương\rq\rq.
+			\item Mệnh đề phủ định của $Q$ là $\overline{Q}$: \lq\lq Hình hộp là hình lăng trụ\rq\rq.
+		\end{enumerate}
+	}
+\end{vd}
+
+\begin{vd}%[0D1Y1-3]
+	Phủ định các mệnh đề sau.
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $A$: \lq\lq$x^2-4x+4=0$ có nghiệm\rq\rq.
+			\item $B$: \lq\lq Con thì thấp hơn cha\rq\rq.
+			\item $C$: \lq\lq$5+4=10$\rq\rq.
+			\item $D$: \lq\lq$10$ chia hết cho $3$\rq\rq.
+			\item $E$: \lq\lq$5$ là số hữu tỉ\rq\rq.
+			\item $F$: \lq\lq Pari là thủ đô nước Anh\rq\rq.
+		\end{enumerate}
+	\end{multicols}
+	\loigiai{\begin{multicols}{2}
+			\begin{enumerate}
+				\item $\overline{A}$: \lq\lq $x^2-4x+4=0$ có nghiệm\rq\rq.
+				\item $\overline{B}$: \lq\lq Con thì không thấp hơn cha\rq\rq.
+				\item $\overline{C}$: \lq\lq $5+4\neq 10$\rq\rq.
+				\item $\overline{D}$: \lq\lq $10$ không chia hết cho $3$\rq\rq.
+				\item $\overline{E}$: \lq\lq $5$ không phải là số hữu tỉ\rq\rq.
+				\item $\overline{F}$: \lq\lq Pari không phải là thủ đô nước Anh\rq\rq.
+			\end{enumerate}
+		\end{multicols}
+	}
+\end{vd}
+
+\begin{dang}{Mệnh đề kéo theo, mệnh đề đảo, mệnh đề tương đương}
+	\begin{itemize}
+		\item Mệnh đề \lq\lq nếu $P$ thì $Q$\rq\rq\,gọi là \textbf{mệnh đề kéo theo}. Ký hiệu là $P\Rightarrow Q$.
+		\item Mệnh đề $P\Rightarrow Q$  chỉ sai khi $P$ \textbf{đúng} $Q$ \textbf{sai}.
+		\item Mệnh đề $Q\Rightarrow P$ gọi là \textbf{mệnh đề đảo} của $P\Rightarrow Q$.
+		\item Mệnh đề \lq\lq $P$ nếu và chỉ nếu $Q$\rq\rq\,gọi là \textbf{ mệnh đề tương đương}. Ký hiệu là $P\Leftrightarrow Q$.
+		\item Mệnh đề $P\Leftrightarrow Q$ đúng khi cả $P\Rightarrow Q$ và $Q\Rightarrow P$ cùng đúng.
+	\end{itemize}
+\end{dang}
+\begin{vd}%[0D1B1-4]
+	Cho tứ giác $ABCD$, xét hai câu sau:\\
+	$P$: \lq\lq Tứ giác $ABCD$ có tổng số đo hai góc đối diện bằng $180^\circ$\rq\rq. \\
+	$Q$: \lq\lq ABCD là tứ giác nội tiếp đường tròn\rq\rq.\\
+	Phát biểu mệnh đề $P \Rightarrow Q$ và cho biết tính đúng sai của mệnh đề đó.
+	\loigiai
+	{$P \Rightarrow Q$: \lq\lq Nếu tứ giác $ABCD$ có tổng số đo hai góc đối diện bằng $180^\circ$ thì $ABCD$ là tứ giác nội tiếp đường tròn\rq\rq.\\
+		Mệnh đề kéo theo này là đúng.}
+\end{vd}
+\begin{vd}%[0D1Y1-4]
+	Hãy phát biểu mệnh đề đảo của mệnh đề: \lq\lq Nếu tam giác $ABC$ là tam giác đều thì tam giác $ABC$ là tam giác cân\rq\rq\,và xác định tính đúng sai của mệnh đề đảo này.
+	\loigiai{ 
+		Mệnh đề đảo của mệnh đề đã cho là: \lq\lq Nếu tam giác $ABC$ là tam giác cân thì tam giác $ABC$ là tam giác đều\rq\rq. \\
+		Mệnh đề đảo này là sai.}
+\end{vd}
+\begin{vd}%[0D1B1-4]
+	Cho các mệnh đề $P$: \lq\lq $a$ và $b$ cùng chia hết cho $c$\rq\rq, $Q$: \lq\lq $a+b$ chia hết cho $c$\rq\rq. 
+	\begin{enumerate}
+		\item Hãy phát biểu định lí $P \Rightarrow Q$. Nêu giả thiết kết luận của định lí và phát biểu định lí này dưới dạng điều kiện cần, điều kiện đủ.
+		\item Hãy phát biểu mệnh đề đảo của mệnh đề $P \Rightarrow Q$ rồi xác định tính đúng sai của mệnh đề đảo này.
+	\end{enumerate}
+	\loigiai 
+	{
+		\begin{enumerate}
+			\item Định lí $P \Rightarrow Q$: \lq\lq Nếu $a$ và $b$ cùng chia hết cho $c$ thì $a+b$ chia hết cho $c$\rq\rq. \\
+			Giả thiết là: \lq\lq $a$ và $b$ cùng chia hết cho $c$\rq\rq. \\
+			Kết luận là: \lq\lq $a+b$ chia hết cho $c$\rq\rq. \\
+			Dạng điều kiện cần: \lq\lq  $a+b$ chia hết cho $c$ là điều kiện cần đề $a$ và $b$ cùng chia hết cho $c$\rq\rq. \\
+			Dạng điều kiện đủ: \lq\lq $a$ và $b$ cùng chia hết cho $c$ là điều kiện đủ đề  $a+b$ chia hết cho $c$\rq\rq. 
+			\item Mệnh đề đảo $Q \Rightarrow P$: \lq\lq Nếu  $a+b$ chia hết cho $c$ thì  $a$ và $b$ cùng chia hết cho $c$\rq\rq. \\
+			Mệnh đề đảo này là sai.
+		\end{enumerate}
+	}
+\end{vd}
+\begin{vd}%[0D1B1-4]
+	Cho hai mệnh đề:\\
+	$P$: \lq\lq Tứ giác $ABCD$ là hình vuông\rq\rq.\\
+	$Q$: \lq\lq Tứ giác $ABCD$ là hình chữ nhật có hai đường chéo vuông góc với nhau\rq\rq.\\
+	Hãy phát biểu mệnh đề tương đương $ P \Leftrightarrow Q$ và xác định tính đúng sai của mệnh đề tương đương này.
+	\loigiai
+	{
+		Mệnh đề tương đương $ P \Leftrightarrow Q$: \lq\lq 	Tứ giác $ABCD$ là hình vuông khi và chỉ khi tứ giác $ABCD$ là hình chữ nhật có hai đường chéo vuông góc với nhau\rq\rq. \\
+		Mệnh đề tương đương này đúng vì cả hai mệnh đề $P \Rightarrow Q$ và $Q \Rightarrow P$ đều đúng.
+	}
+	
+\end{vd}
+\begin{dang}{Mệnh đề với kí hiệu $\forall$ và $\exists$ và phủ định}
+	\begin{itemize}
+		\item Ta đọc $\forall x\in X$, $\exists x\in X$ lần lượt là: Với mọi $x$ thuộc $X$, tồn tại (có ít nhất) $x$ thuộc $X$.
+		\item Phủ định của mệnh đề \lq\lq$\forall x\in X,P(x )$\rq\rq\,là mệnh đề \lq\lq$\exists x\in X,\overline{P(x)}$\rq\rq.
+		\item Phủ định của mệnh đề \lq\lq$\exists x\in X,P(x )$\rq\rq\,là mệnh đề \lq\lq$\forall x\in X,\overline{P(x)}$\rq\rq.
+	\end{itemize}
+\end{dang}
+
+\begin{vd}%[0D1Y1-5]
+	Dùng kí hiệu \lq\lq$\forall$ \rq\rq\,hoặc \lq\lq$\exists$\rq\rq để viết các mệnh đề sau:
+	\begin{enumerate}
+		\item Bình phương mọi số thực đều dương.
+		\item Có ít nhất một số tự nhiên bằng với nghịch đảo của nó.
+	\end{enumerate}
+	\loigiai{\begin{multicols}{2}
+			\begin{enumerate}
+				\item \lq\lq$\forall x\in \mathbb{R}, x^2>0$\rq\rq.
+				\item \lq\lq$\exists n\in \mathbb{N}, n=\dfrac{1}{n}$\rq\rq.
+			\end{enumerate}
+		\end{multicols}
+	}
+\end{vd}
+
+\begin{vd}%[0D1B1-5]
+	Phủ định các mệnh đề sau.
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item Mọi động vật đều di chuyển.
+			\item $\forall x\in \mathbb{R}, x^2-x+7>0$.
+			\item $\exists x\in \mathbb{N}, x^2=x$.
+		\end{enumerate}
+	\end{multicols}
+	
+	\loigiai{
+		\begin{enumerate}
+			\item Có một động vật không di chuyển.
+			\item $\exists x\in \mathbb{R}, x^2-x+7\leq 0$.
+			\item $\forall x\in \mathbb{N}, x^2\neq x$.
+		\end{enumerate}
+	}
+\end{vd}
+\Closesolutionfile{ans}
