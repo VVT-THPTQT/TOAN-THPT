@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mệnh Đề - Toán Học</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f9;
+        }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #2c3e50; }
+        h2 { color: #2980b9; border-left: 5px solid #2980b9; padding-left: 10px; margin-top: 30px; }
+        
+        /* Khung tóm tắt lí thuyết */
+        .summary-box {
+            background-color: #e8f4fd;
+            border: 1px solid #b3d7ff;
+            border-left: 10px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .summary-title { font-weight: bold; color: #0d47a1; margin-bottom: 10px; display: block; }
+
+        /* Khung Ví dụ */
+        .example-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .example-title { font-weight: bold; color: #d35400; }
+        .solution {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+            color: #27ae60;
+        }
+        .solution::before { content: "Lời giải: "; font-weight: bold; }
+
+        /* Khung dạng toán */
+        .method-box {
+            background-color: #fef9e7;
+            border: 1px solid #f9e79f;
+            border-left: 10px solid #f1c40f;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .method-title { font-weight: bold; color: #9a7d0a; }
+
+        /* Khung chú ý */
+        .note-box {
+            background-color: #fdedec;
+            border: 1px solid #fadbd8;
+            border-left: 10px solid #e74c3c;
+            padding: 10px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+
+        .math { font-family: "Times New Roman", Times, serif; font-style: italic; font-weight: bold; }
+        .overline { text-decoration: overline; }
+        ul, ol { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>MỆNH ĐỀ</h1>
+
+    <h2>1. Tóm tắt lí thuyết</h2>
+
+    <div class="summary-box">
+        <span class="summary-title">Tóm tắt kiến thức</span>
+        <ul>
+            <li>Mỗi mệnh đề toán học phải hoặc đúng hoặc sai. Một mệnh đề toán học không thể vừa đúng, vừa sai.</li>
+            <li>Cho mệnh đề <span class="math">P</span>. Mệnh đề "Không phải <span class="math">P</span>" được gọi là mệnh đề phủ định của mệnh đề <span class="math">P</span> và kí hiệu là <span class="math overline">P</span>. Mệnh đề <span class="math overline">P</span> đúng khi <span class="math">P</span> sai. Mệnh đề <span class="math overline">P</span> sai khi <span class="math">P</span> đúng.</li>
+            <li>Mệnh đề <span class="math">P &rArr; Q</span> chỉ sai khi <span class="math">P</span> đúng và <span class="math">Q</span> sai; đúng trong các trường hợp còn lại.</li>
+            <li>Mệnh đề <span class="math">Q &rArr; P</span> được gọi là mệnh đề đảo của mệnh đề <span class="math">P &rArr; Q</span>.</li>
+            <li>Nếu cả hai mệnh đề <span class="math">P &rArr; Q</span> và <span class="math">Q &rArr; P</span> đều đúng, ta nói <span class="math">P</span> và <span class="math">Q</span> là hai mệnh đề tương đương, kí hiệu <span class="math">P &hArr; Q</span>.</li>
+            <li>Cho mệnh đề chứa biến "<span class="math">P(x), x &isin; X</span>".
+                <ul>
+                    <li>Mỗi phát biểu "<span class="math">&forall; x &isin; X, P(x)</span>" và "<span class="math">&exist; x &isin; X, P(x)</span>" là một mệnh đề.</li>
+                    <li>Phủ định của mỗi mệnh đề trên lần lượt là mệnh đề "<span class="math">&exist; x &isin; X, <span class="overline">P(x)</span></span>" và "<span class="math">&forall; x &isin; X, <span class="overline">P(x)</span></span>".</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="example-container">
+        <span class="example-title">Ví dụ 1:</span> Trong các câu sau, câu nào là mệnh đề? câu nào không phải là mệnh đề?
+        <ol>
+            <li>Phương trình <span class="math">x<sup>2</sup> - 4</span> có nghiệm nguyên dương;</li>
+            <li><span class="math">3 + 1 = 6</span>;</li>
+            <li>Có bao nhiêu người ghét bạn?</li>
+            <li>Trời hôm nay đẹp quá!</li>
+        </ol>
+        <div class="solution">
+            <ol>
+                <li>Vì phương trình có nghiệm nguyên dương <span class="math">x = 2</span> nên đây là mệnh đề đúng. Do đó là mệnh đề.</li>
+                <li>Là mệnh đề sai vì <span class="math">3 + 1 = 4</span>. Do đó là mệnh đề.</li>
+                <li>Câu hỏi, không xác định được tính đúng sai. Không phải là mệnh đề.</li>
+                <li>Câu cảm thán, không xác định được tính đúng sai. Không phải là mệnh đề.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="note-box">
+        <strong>Ghi chú:</strong> Những mệnh đề liên quan đến toán học được gọi là <b>mệnh đề toán học</b>.
+    </div>
+
+    <div class="example-container">
+        <span class="example-title">Ví dụ 2:</span> Xét câu "<span class="math">x > 1</span>". Hãy tìm hai giá trị thực của <span class="math">x</span> để nhận được một mệnh đề đúng và một mệnh đề sai.
+        <div class="solution">
+            <ul>
+                <li>Cho <span class="math">x = 5</span> ta được mệnh đề đúng.</li>
+                <li>Cho <span class="math">x = 0</span> ta được mệnh đề sai.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="example-container">
+        <span class="example-title">Ví dụ 3:</span> Phát biểu mệnh đề phủ định của mỗi mệnh đề sau:
+        <ol>
+            <li>25 là số chính phương;</li>
+            <li>Hình chữ nhật không phải là hình vuông.</li>
+        </ol>
+        <div class="solution">
+            <ol>
+                <li>25 không phải là số chính phương;</li>
+                <li>Hình chữ nhật là hình vuông.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="example-container">
+        <span class="example-title">Ví dụ 4:</span> Cho tam giác <span class="math">ABC</span>. Xét hai mệnh đề: <br>
+        <span class="math">P</span>: "Tam giác <span class="math">ABC</span> có hai góc bằng 60°" <br>
+        <span class="math">Q</span>: "Tam giác <span class="math">ABC</span> đều" <br>
+        Phát biểu mệnh đề <span class="math">P &rArr; Q</span> và nhận xét tính đúng sai.
+        <div class="solution">
+            <span class="math">P &rArr; Q</span>: "Nếu tam giác <span class="math">ABC</span> có hai góc bằng 60° thì tam giác <span class="math">ABC</span> đều". Đây là mệnh đề <b>đúng</b>.
+        </div>
+    </div>
+
+    <h2>2. Các dạng toán thường gặp</h2>
+
+    <div class="method-box">
+        <span class="method-title">Dạng 1: Nhận diện, xét tính đúng sai của mệnh đề</span>
+        <ul>
+            <li>Mệnh đề phải là một câu khẳng định có tính đúng – sai rõ ràng.</li>
+            <li>Mệnh đề chứa biến chưa phải là mệnh đề (chỉ trở thành mệnh đề khi gán cho biến một giá trị cụ thể).</li>
+        </ul>
+    </div>
+
+    <div class="example-container">
+        <span class="example-title">Ví dụ 5:</span> Cho mệnh đề chứa biến <span class="math">P(x): 3x + 5 &le; x<sup>2</sup></span>. Mệnh đề nào đúng trong các mệnh đề: <span class="math">P(3), P(1), P(4), P(5)</span>?
+        <div class="solution">
+            <ul>
+                <li><span class="math">P(3): 3(3) + 5 = 14 &le; 9</span> (Sai)</li>
+                <li><span class="math">P(5): 3(5) + 5 = 20 &le; 25</span> (Đúng)</li>
+            </ul>
+            Kết quả: <span class="math">P(5)</span> là mệnh đề đúng.
+        </div>
+    </div>
+
+    <div class="method-box">
+        <span class="method-title">Dạng 2: Phủ định của một mệnh đề</span>
+        <p>Thêm hoặc bớt từ "không" hoặc "không phải" vào trước vị ngữ. Chú ý các ký hiệu:</p>
+        <ul>
+            <li>Phủ định của <span class="math">&forall;</span> là <span class="math">&exist;</span></li>
+            <li>Phủ định của <span class="math">&gt;</span> là <span class="math">&le;</span></li>
+            <li>Phủ định của <span class="math">=</span> là <span class="math">&ne;</span></li>
+        </ul>
+    </div>
+
+    <div class="example-container">
+        <span class="example-title">Ví dụ 6:</span> Phủ định mệnh đề: <span class="math">P: "&forall; x &isin; ℝ, x<sup>2</sup> - x + 7 > 0"</span>
+        <div class="solution">
+            <span class="math overline">P</span>: "<span class="math">&exist; x &isin; ℝ, x<sup>2</sup> - x + 7 &le; 0</span>"
+        </div>
+    </div>
+
+    <div class="method-box">
+        <span class="method-title">Dạng 3: Mệnh đề kéo theo và tương đương</span>
+        <ul>
+            <li><span class="math">P &rArr; Q</span> (Điều kiện đủ: P, Điều kiện cần: Q).</li>
+            <li><span class="math">P &hArr; Q</span> (P khi và chỉ khi Q; P là điều kiện cần và đủ để có Q).</li>
+        </ul>
+    </div>
+
+    <div class="example-container">
+        <span class="example-title">Ví dụ 7:</span> Cho các mệnh đề <span class="math">P</span>: "a và b chia hết cho c", <span class="math">Q</span>: "a + b chia hết cho c". Phát biểu dưới dạng điều kiện cần.
+        <div class="solution">
+            "a + b chia hết cho c là điều kiện cần để a và b cùng chia hết cho c."
+        </div>
+    </div>
+
+</body>
+</html>
