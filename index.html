@@ -1,199 +1,280 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Học Toán THPT – Học Hiểu, Học Sâu</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>VVT – TOÁN THPT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- MathJax hiển thị LaTeX -->
-<script>
-  MathJax = {
-    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
-  };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --primary: #2563eb;
-  --secondary: #0ea5e9;
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --sepia: #f5ecd9;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: #333;
-  line-height: 1.6;
-}
+    body {
+      background: #f4f6f8;
+      color: #333;
+    }
 
-header {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  color: white;
-  padding: 25px;
-  text-align: center;
-}
+    /* ===== HEADER ===== */
+    header {
+      background: #0b79c1;
+      border-top: 8px solid #f2a6a6;
+    }
 
-header h1 {
-  margin: 0;
-}
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+    }
 
-.controls {
-  text-align: center;
-  margin: 15px;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
 
-.controls button {
-  padding: 8px 12px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: white;
+      padding: 3px;
+    }
 
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
+    nav {
+      margin-left: auto;
+    }
 
-.grade-boxes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 20px;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
 
-.grade {
-  background: var(--card);
-  padding: 25px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+    }
 
-.grade h2 {
-  color: var(--primary);
-}
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
 
-.section {
-  background: var(--card);
-  padding: 30px;
-  border-radius: 10px;
-  margin-top: 30px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
+    /* ===== BANNER ===== */
+    .banner {
+      position: relative;
+      height: 380px;
+      background: url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f")
+        center / cover no-repeat;
+    }
 
-.section h2 {
-  color: var(--primary);
-}
+    .banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+    }
 
-.pdf-list a {
-  display: block;
-  margin: 8px 0;
-  text-decoration: none;
-  color: var(--secondary);
-}
+    .banner-content {
+      position: relative;
+      max-width: 1200px;
+      margin: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      color: white;
+    }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #666;
-}
+    .banner-content h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
 
-/* Sepia mode */
-body.sepia {
-  background: var(--sepia);
-}
-</style>
+    .banner-content p {
+      font-size: 18px;
+      max-width: 600px;
+    }
+
+    /* ===== MAIN ===== */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      background: #0b79c1;
+      color: white;
+      padding: 12px;
+      font-size: 18px;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card iframe,
+    .card img {
+      width: 100%;
+      border: none;
+    }
+
+    .schedule {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    .schedule th {
+      background: #00e5ff;
+      padding: 8px;
+      border: 1px solid #ccc;
+      color: red;
+    }
+
+    .schedule td {
+      padding: 8px;
+      border: 1px solid #ccc;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #eaeaea;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 12px;
+        font-size: 13px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .banner-content h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
+<!-- ===== HEADER ===== -->
 <header>
-  <h1>📐 HỌC TOÁN THPT</h1>
-  <p>Học hiểu bản chất – Rèn tư duy – Tự tin thi cử</p>
+  <div class="navbar">
+    <div class="logo">
+      <img src="logo_truong.png" alt="Logo trường">
+      <span>VVT_TOÁN THPT-QT</span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">TOÁN 12</a></li>
+        <li><a href="#">TOÁN 11</a></li>
+        <li><a href="#">TOÁN 10</a></li>
+        <li><a href="#">THỜI KHÓA BIỂU</a></li>
+        <li><a href="#">TỰ RÈN LUYỆN</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<div class="controls">
-  <button onclick="toggleSepia()">🌙 Chế độ Sepia</button>
-  <button onclick="fontSize(1)">A+</button>
-  <button onclick="fontSize(-1)">A-</button>
-</div>
+<!-- ===== BANNER ===== -->
+<section class="banner">
+  <div class="banner-overlay"></div>
+  <div class="banner-content">
+    <div>
+      <h1>HỌC TẬP TOÁN THPT</h1>
+      <p>
+        Website hỗ trợ học sinh Toán THPT – bài giảng rõ ràng,
+        lời giải sư phạm, học tập chủ động và hiệu quả.
+      </p>
+    </div>
+  </div>
+</section>
 
+<!-- ===== MAIN ===== -->
 <main>
+  <div class="grid">
 
-<!-- KHỐI LỚP -->
-<div class="grade-boxes">
-  <div class="grade">
-    <h2>📘 TOÁN 10</h2>
-    <p>Hàm số – Mệnh đề – Hình học</p>
+    <!-- VIDEO -->
+    <div class="card">
+      <h2>🎬 Hoạt động lớp học</h2>
+      <div class="card-content">
+        <iframe height="260"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div class="card">
+      <h2>📅 Thời khóa biểu cá nhân</h2>
+      <div class="card-content">
+        <table class="schedule">
+          <tr>
+            <th>TIẾT</th>
+            <th>THỨ HAI</th>
+            <th>THỨ BA</th>
+            <th>THỨ TƯ</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>10A1</td>
+            <td>11A2</td>
+            <td>12A3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>10A1</td>
+            <td>11A2</td>
+            <td>12A3</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
   </div>
-  <div class="grade">
-    <h2>📗 TOÁN 11</h2>
-    <p>Dãy số – Lượng giác – Hình không gian</p>
-  </div>
-  <div class="grade">
-    <h2>📕 TOÁN 12</h2>
-    <p>Giải tích – OXYZ – Ôn thi THPT</p>
-  </div>
-</div>
-
-<!-- BÀI GIẢNG MẪU -->
-<div class="section">
-<h2>🧮 Bài giảng mẫu – Toán 10</h2>
-
-<b>Bài toán:</b> Giải phương trình bậc hai  
-$$ax^2 + bx + c = 0 \quad (a \ne 0)$$
-
-<b>Lời giải:</b><br>
-Ta tính biệt thức:
-$$\Delta = b^2 - 4ac$$
-
-- Nếu $\Delta > 0$ ⇒ phương trình có 2 nghiệm phân biệt  
-$$x_{1,2} = \frac{-b \pm \sqrt{\Delta}}{2a}$$
-
-- Nếu $\Delta = 0$ ⇒ phương trình có nghiệm kép  
-$$x = \frac{-b}{2a}$$
-
-- Nếu $\Delta < 0$ ⇒ phương trình vô nghiệm
-
-<b>Bài tập luyện tập:</b>  
-Giải phương trình:  
-$$2x^2 - 3x - 2 = 0$$
-</div>
-
-
-<!-- KHO PDF -->
-<div class="section">
-<h2>📚 Kho tài liệu PDF</h2>
-<div class="pdf-list">
-  <a href="pdf/toan10_chuong1.pdf">📄 Toán 10 – Chương 1</a>
-  <a href="pdf/toan11_chuong2.pdf">📄 Toán 11 – Chương 2</a>
-  <a href="pdf/toan12_on_thi.pdf">📄 Toán 12 – Ôn thi</a>
-</div>
-</div>
-
 </main>
 
+<!-- ===== FOOTER ===== -->
 <footer>
-© 2025 – Website học Toán THPT miễn phí
+  © 2025 – Website cá nhân Giáo viên Toán THPT | Thiết kế phục vụ giáo dục
 </footer>
-
-<script>
-function toggleSepia() {
-  document.body.classList.toggle("sepia");
-}
-
-function fontSize(step) {
-  let size = parseFloat(getComputedStyle(document.body).fontSize);
-  document.body.style.fontSize = (size + step) + "px";
-}
-</script>
 
 </body>
 </html>
-
-
