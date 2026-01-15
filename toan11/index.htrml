@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám Phá Logarit - Toán 11 Chân Trời Sáng Tạo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0f766e', // Teal 700
+                        secondary: '#f97316', // Orange 500
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                        'slide-in': 'slideIn 0.3s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateX(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- KaTeX for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #fafaf9; color: #1c1917; -webkit-font-smoothing: antialiased; }
+        
+        /* Glassmorphism & Cards */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(15, 118, 110, 0.15); /* Primary color shadow hint */
+            border-color: #99f6e4; /* Teal-200 */
+        }
+
+        /* Navigation Styles */
+        .nav-btn { position: relative; overflow: hidden; }
+        .nav-btn::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
+            background-color: currentColor; transition: width 0.3s ease;
+        }
+        .nav-btn:hover::after { width: 100%; }
+
+        .active-sidebar-item {
+            background-color: #f0fdfa; /* Teal-50 */
+            color: #0f766e; /* Teal-700 */
+            border-left: 4px solid #0f766e;
+            font-weight: 700;
+        }
+        .inactive-sidebar-item {
+            color: #57534e; /* Stone-600 */
+            border-left: 4px solid transparent;
+        }
+        .inactive-sidebar-item:hover {
+            background-color: #fafaf9;
+            color: #1c1917;
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 20px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+
+        /* Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none; width: 100%; background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%;
+            background: #0f766e; cursor: pointer; margin-top: -8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2); transition: transform 0.1s;
+        }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #ccfbf1; border-radius: 2px;
+        }
+
+        /* Chart Container Polish */
+        .chart-wrapper {
+            background: white; border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e7e5e4;
+        }
+
+        .katex { font-size: 1.15em; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="app.setView('dashboard')">
+                <div class="bg-gradient-to-br from-teal-600 to-teal-800 text-white p-2.5 rounded-xl shadow-md font-extrabold text-xl tracking-tighter">Log</div>
+                <div class="flex flex-col">
+                    <h1 class="text-lg sm:text-xl font-bold text-stone-800 leading-none">Bài 2: Logarit</h1>
+                    <span class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold mt-0.5">Toán 11 - CTST</span>
+                </div>
+            </div>
+            <nav class="flex gap-1 sm:gap-4">
+                <button onclick="app.setView('dashboard')" class="nav-btn px-3 py-2 text-sm font-bold text-stone-600 hover:text-teal-700 transition-colors">
+                    Trang chủ
+                </button>
+                <button onclick="app.setView('summary')" class="px-4 py-2 text-sm font-bold rounded-full bg-orange-100 text-orange-700 hover:bg-orange-200 transition-all shadow-sm hover:shadow">
+                    Tổng hợp CT
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
+        
+        <!-- View: Dashboard -->
+        <div id="dashboard-view" class="animate-fade-in-up">
+            <div class="mb-8 text-center sm:text-left">
+                <h2 class="text-2xl font-bold text-stone-800">Khám phá kiến thức</h2>
+                <p class="text-stone-500">Chọn một chủ đề bên dưới để bắt đầu bài học.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="dashboard-grid">
+                <!-- Cards injected by JS -->
+            </div>
+        </div>
+
+        <!-- View: Lesson Detail -->
+        <div id="lesson-view" class="hidden animate-fade-in-up bg-white rounded-3xl shadow-xl border border-stone-100 overflow-hidden flex flex-col lg:flex-row min-h-[700px]">
+            <!-- Sidebar Navigation -->
+            <div class="w-full lg:w-72 bg-stone-50/50 border-r border-stone-200 flex flex-col h-[300px] lg:h-auto flex-shrink-0">
+                <div class="p-5 border-b border-stone-200 bg-stone-50">
+                    <h3 class="text-xs font-extrabold text-stone-400 uppercase tracking-widest">Danh mục bài học</h3>
+                </div>
+                <div id="lesson-nav" class="flex-1 overflow-y-auto custom-scroll p-3 space-y-1">
+                    <!-- Nav items injected by JS -->
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="flex-1 p-6 lg:p-10 overflow-y-auto custom-scroll relative bg-white">
+                <button onclick="app.setView('dashboard')" class="absolute top-6 right-6 p-2 rounded-full hover:bg-stone-100 text-stone-400 hover:text-stone-600 transition-colors lg:hidden z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <div id="lesson-content" class="max-w-4xl mx-auto">
+                    <!-- Dynamic Content injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Summary -->
+        <div id="summary-view" class="hidden animate-fade-in-up bg-white rounded-3xl shadow-xl border border-stone-100 p-8 sm:p-10 relative">
+             <button onclick="app.setView('dashboard')" class="absolute top-6 right-6 p-2 rounded-full hover:bg-stone-100 text-stone-400 hover:text-stone-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="text-center mb-10">
+                <span class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Cheat Sheet</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-800 mt-3">Tổng Hợp Công Thức</h2>
+                <p class="text-stone-500 mt-2">Toàn bộ kiến thức trọng tâm trong một trang duy nhất.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="formula-grid">
+                <!-- Formulas injected by JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-8 text-center border-t border-stone-200 bg-white">
+        <p class="text-stone-400 text-sm font-medium">© 2024 Học liệu Toán 11 - Chân Trời Sáng Tạo</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Data Store (Giữ nguyên nội dung)
+        const data = {
+            groups: [
+                {
+                    id: 1, title: "Định nghĩa Logarit", role: "Người Khởi Nguồn", icon: "🌱", color: "teal",
+                    description: "Hiểu bản chất logarit từ bài toán tìm số mũ cơ bản.",
+                    content: {
+                        intro: "Logarit không phải là một con số bí ẩn. Nó chỉ đơn giản là câu trả lời cho câu hỏi: 'Cơ số a phải mũ lên bao nhiêu để bằng b?'.",
+                        theory: [
+                            { label: "Định nghĩa", text: "Cho $0 < a \\neq 1$ và $b > 0$.<br>$\\alpha = \\log_a b \\Leftrightarrow a^\\alpha = b$" },
+                            { label: "Điều kiện xác định", text: "Cơ số $a$: dương và khác 1 ($0 < a \\neq 1$).<br>Biểu thức dưới dấu log $b$: phải dương ($b > 0$)." }
+                        ],
+                        examples: [
+                            { q: "Tính $\\log_2 8$", hint: "Vì $2^3 = 8$", a: "3" },
+                            { q: "Tính $\\log_3 \\frac{1}{9}$", hint: "Vì $3^{-2} = \\frac{1}{9}$", a: "-2" },
+                            { q: "Tìm x biết $\\log_{\\sqrt{5}} x = 2$", hint: "$x = (\\sqrt{5})^2$", a: "5" }
+                        ],
+                        vizType: "logGraph"
+                    }
+                },
+                {
+                    id: 2, title: "Tính chất cơ bản", role: "Luật Sư Cơ Bản", icon: "⚖️", color: "teal",
+                    description: "4 quy tắc 'vỡ lòng' bắt buộc phải thuộc nằm lòng.",
+                    content: {
+                        intro: "Giống như bảng cửu chương, đây là những tính chất cơ bản nhất của Logarit mà Nhóm 2 mang đến.",
+                        theory: [
+                            { label: "Logarit của 1", text: "$\\log_a 1 = 0$" },
+                            { label: "Logarit của cơ số", text: "$\\log_a a = 1$" },
+                            { label: "Mũ logarit", text: "$a^{\\log_a b} = b$" },
+                            { label: "Logarit của mũ", text: "$\\log_a (a^\\alpha) = \\alpha$" }
+                        ],
+                        examples: [
+                            { q: "Tính $A = \\log_{2024} 1 + \\log_5 5$", hint: "$0 + 1$", a: "1" },
+                            { q: "Rút gọn $B = 3^{\\log_3 5}$", hint: "Dùng tính chất $a^{\\log_a b} = b$", a: "5" },
+                            { q: "Tính $C = \\log_2 (2^{10})$", hint: "Số mũ là kết quả", a: "10" }
+                        ]
+                    }
+                },
+                {
+                    id: 3, title: "Logarit của một tích", role: "Biệt Đội Phép Nhân", icon: "✖️", color: "secondary",
+                    description: "Biến phép nhân phức tạp thành phép cộng đơn giản.",
+                    content: {
+                        intro: "Logarit có khả năng đặc biệt là hạ cấp phép toán: Biến phép Nhân thành phép Cộng.",
+                        theory: [
+                            { label: "Công thức", text: "$\\log_a (M \\cdot N) = \\log_a M + \\log_a N$ <br>(với $M, N > 0$)" },
+                            { label: "Mở rộng", text: "$\\log_a (x \\cdot y \\cdot z) = \\log_a x + \\log_a y + \\log_a z$" }
+                        ],
+                        examples: [
+                            { q: "Tính $P = \\log_6 9 + \\log_6 4$", hint: "$\\log_6 (9 \\cdot 4) = \\log_6 36$", a: "2" },
+                            { q: "Phân tích $\\log_2 (8a)$", hint: "$\\log_2 8 + \\log_2 a$", a: "3 + \\log_2 a" }
+                        ]
+                    }
+                },
+                {
+                    id: 4, title: "Logarit của một thương", role: "Biệt Đội Phép Chia", icon: "➗", color: "secondary",
+                    description: "Biến phép chia thành phép trừ.",
+                    content: {
+                        intro: "Tương tự như phép nhân, Logarit biến phép Chia phức tạp thành phép Trừ đơn giản hơn nhiều.",
+                        theory: [
+                            { label: "Công thức", text: "$\\log_a \\left(\\frac{M}{N}\\right) = \\log_a M - \\log_a N$" },
+                            { label: "Hệ quả nghịch đảo", text: "$\\log_a \\left(\\frac{1}{N}\\right) = -\\log_a N$" }
+                        ],
+                        examples: [
+                            { q: "Tính $Q = \\log_3 45 - \\log_3 5$", hint: "$\\log_3 (45:5) = \\log_3 9$", a: "2" },
+                            { q: "Biến đổi $\\log_2 \\frac{x}{4}$", hint: "$\\log_2 x - \\log_2 4$", a: "\\log_2 x - 2" }
+                        ]
+                    }
+                },
+                {
+                    id: 5, title: "Logarit của lũy thừa", role: "Thợ Săn Số Mũ", icon: "🏹", color: "secondary",
+                    description: "Quy tắc 'bay màu' số mũ ra khỏi logarit.",
+                    content: {
+                        intro: "Công cụ mạnh nhất để giải quyết các phương trình mũ: đưa số mũ ra ngoài logarit.",
+                        theory: [
+                            { label: "Công thức cơ bản", text: "$\\log_a b^\\alpha = \\alpha \\log_a b$" },
+                            { label: "Công thức lấy căn", text: "$\\log_a \\sqrt[n]{b} = \\frac{1}{n} \\log_a b$" }
+                        ],
+                        examples: [
+                            { q: "Tính $\\log_2 4^3$", hint: "$3 \\cdot \\log_2 4 = 3 \\cdot 2$", a: "6" },
+                            { q: "Rút gọn $\\log_a (a^3 \\cdot \\sqrt{a})$", hint: "$\\log_a a^{3.5} = 3.5$", a: "3.5" }
+                        ]
+                    }
+                },
+                {
+                    id: 6, title: "Công thức đổi cơ số", role: "Ảo Thuật Gia Cơ Số", icon: "🎩", color: "secondary",
+                    description: "Chuyển đổi linh hoạt giữa các cơ số khác nhau.",
+                    content: {
+                        intro: "Phần khó nhất nhưng 'ảo diệu' nhất bài. Giúp chuyển từ cơ số này sang cơ số khác.",
+                        theory: [
+                            { label: "Công thức tổng quát", text: "$\\log_a b = \\frac{\\log_c b}{\\log_c a}$" },
+                            { label: "Hệ quả nghịch đảo", text: "$\\log_a b = \\frac{1}{\\log_b a}$" },
+                            { label: "Mũ ở cơ số", text: "$\\log_{a^\\alpha} b = \\frac{1}{\\alpha} \\log_a b$" }
+                        ],
+                        examples: [
+                            { q: "Tính $M = \\log_4 8$", hint: "Đổi về cơ số 2: $\\frac{\\log_2 8}{\\log_2 4} = \\frac{3}{2}$", a: "1.5" },
+                            { q: "Cho $\\log_2 3 = a$. Tính $\\log_{16} 27$", hint: "$\\log_{2^4} 3^3 = \\frac{3}{4}\\log_2 3$", a: "0.75a" }
+                        ]
+                    }
+                },
+                {
+                    id: 7, title: "Logarit thập phân & tự nhiên", role: "Cặp Đôi Đặc Biệt", icon: "🌟", color: "primary",
+                    description: "Làm quen với ký hiệu log và ln.",
+                    content: {
+                        intro: "Hai ký hiệu viết tắt quốc tế thường dùng trong máy tính và khoa học.",
+                        theory: [
+                            { label: "Logarit thập phân", text: "Cơ số 10. Ký hiệu: $\\log N$ hoặc $\\lg N$" },
+                            { label: "Logarit tự nhiên (Nê-pe)", text: "Cơ số $e \\approx 2.718$. Ký hiệu: $\\ln N$" }
+                        ],
+                        examples: [
+                            { q: "Viết gọn $\\log_{10} 1000$", hint: "$\\log 1000$", a: "3" },
+                            { q: "Tính nhanh $\\ln e$", hint: "$\\log_e e = 1$", a: "1" }
+                        ]
+                    }
+                },
+                {
+                    id: 8, title: "Ứng dụng & Máy tính", role: "Nhà Ứng Dụng", icon: "📱", color: "primary",
+                    description: "Đo độ Richter, pH và cách bấm máy tính.",
+                    content: {
+                        intro: "Ứng dụng thực tế của logarit trong việc đo lường các đại lượng chênh lệch lớn.",
+                        theory: [
+                            { label: "Độ Richter", text: "$M = \\log A - \\log A_0$. Đo độ chấn động động đất." },
+                            { label: "Bấm máy tính", text: "Dùng phím $\\log_{\\square}\\square$ cho log bất kỳ và phím $\\ln$ cho logarit tự nhiên." }
+                        ],
+                        examples: [
+                            { q: "Nếu $A = 1000 A_0$, tìm M", hint: "$\\log(1000 A_0) - \\log A_0 = \\log 1000$", a: "3" },
+                            { q: "Bấm máy: $\\log_3 5 + \\ln 2$", hint: "Kết quả xấp xỉ 2 chữ số", a: "2.16" }
+                        ],
+                        vizType: "richterChart"
+                    }
+                }
+            ]
+        };
+
+        const app = {
+            state: {
+                currentView: 'dashboard',
+                currentGroup: null
+            },
+
+            init() {
+                this.renderDashboard();
+                this.renderSummary();
+            },
+
+            renderMath() {
+                if (window.renderMathInElement) {
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                            {left: '$$', right: '$$', display: true},
+                            {left: '$', right: '$', display: false}
+                        ],
+                        throwOnError : false
+                    });
+                }
+            },
+
+            setView(viewName, groupId = null) {
+                // Animation handling could go here, but Tailwind classes handle simple transitions
+                document.getElementById('dashboard-view').classList.add('hidden');
+                document.getElementById('lesson-view').classList.add('hidden');
+                document.getElementById('summary-view').classList.add('hidden');
+
+                if (viewName === 'dashboard') {
+                    document.getElementById('dashboard-view').classList.remove('hidden');
+                } else if (viewName === 'lesson') {
+                    document.getElementById('lesson-view').classList.remove('hidden');
+                    this.loadLesson(groupId);
+                } else if (viewName === 'summary') {
+                    document.getElementById('summary-view').classList.remove('hidden');
+                }
+                
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    this.renderMath();
+                }, 50);
+            },
+
+            renderDashboard() {
+                const container = document.getElementById('dashboard-grid');
+                container.innerHTML = data.groups.map(group => `
+                    <div onclick="app.setView('lesson', ${group.id})" 
+                         class="bg-white p-6 rounded-2xl border border-stone-100 cursor-pointer card-hover flex flex-col h-full group relative overflow-hidden">
+                        <!-- Decorative bg circle -->
+                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-${group.color === 'secondary' ? 'orange' : 'teal'}-50 rounded-full opacity-50 transition-transform group-hover:scale-150"></div>
+                        
+                        <div class="flex items-center justify-between mb-5 relative z-10">
+                            <span class="text-4xl shadow-sm bg-white rounded-2xl p-2">${group.icon}</span>
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-${group.color === 'secondary' ? 'orange' : 'teal'}-600 bg-${group.color === 'secondary' ? 'orange' : 'teal'}-50 px-2 py-1 rounded-md">Nhóm ${group.id}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-stone-800 mb-1 group-hover:text-${group.color === 'secondary' ? 'orange' : 'teal'}-600 transition-colors relative z-10">${group.title}</h3>
+                        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wide mb-3 relative z-10">${group.role}</p>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-6 flex-grow relative z-10">${group.description}</p>
+                        <div class="text-${group.color === 'secondary' ? 'orange' : 'teal'}-600 font-bold text-sm flex items-center gap-2 group-hover:gap-3 transition-all relative z-10">
+                            Học bài này <span class="text-lg">&rarr;</span>
+                        </div>
+                    </div>
+                `).join('');
+                this.renderMath();
+            },
+
+            loadLesson(groupId) {
+                const group = data.groups.find(g => g.id === groupId);
+                this.state.currentGroup = group;
+                const themeColor = group.color === 'secondary' ? 'orange' : 'teal';
+
+                // Update Nav
+                const navContainer = document.getElementById('lesson-nav');
+                navContainer.innerHTML = data.groups.map(g => `
+                    <button onclick="app.loadLesson(${g.id})" 
+                            class="w-full text-left px-4 py-3.5 rounded-xl text-sm transition-all duration-200 mb-1.5 flex items-center gap-3
+                            ${g.id === groupId ? 'active-sidebar-item shadow-sm' : 'inactive-sidebar-item'}">
+                        <span class="text-lg">${g.icon}</span>
+                        <span class="truncate font-medium">${g.title}</span>
+                    </button>
+                `).join('');
+
+                // Update Content
+                const contentContainer = document.getElementById('lesson-content');
+                let vizHtml = '';
+                
+                if (group.content.vizType === 'logGraph') {
+                    vizHtml = `
+                        <div class="mt-10 p-6 sm:p-8 bg-stone-50 rounded-2xl border border-stone-200">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                                <div>
+                                    <h4 class="font-bold text-stone-800 text-lg flex items-center gap-2">
+                                        📈 Đồ thị trực quan
+                                    </h4>
+                                    <p class="text-sm text-stone-500 mt-1">Quan sát sự biến thiên của hàm $y = \\log_a x$</p>
+                                </div>
+                                <div class="bg-white px-4 py-2 rounded-xl border border-stone-200 shadow-sm flex items-center gap-3">
+                                    <label class="text-xs font-bold text-stone-400 uppercase">Cơ số a</label>
+                                    <span id="baseValue" class="text-teal-700 font-bold font-mono text-lg w-8 text-center">2.0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6 px-2">
+                                <input type="range" id="baseSlider" min="0.1" max="5" step="0.1" value="2">
+                                <div class="flex justify-between text-xs text-stone-400 font-bold mt-2 px-1">
+                                    <span>0.1</span>
+                                    <span>1.0</span>
+                                    <span>5.0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-wrapper p-2 relative w-full h-80 sm:h-96">
+                                <canvas id="logChart"></canvas>
+                            </div>
+                        </div>
+                    `;
+                } else if (group.content.vizType === 'richterChart') {
+                    vizHtml = `
+                        <div class="mt-10 p-6 sm:p-8 bg-stone-50 rounded-2xl border border-stone-200">
+                            <h4 class="font-bold text-stone-800 text-lg mb-2">📊 Ứng dụng: Độ Richter</h4>
+                            <p class="text-sm text-stone-500 mb-6">Biểu đồ so sánh mức độ tàn phá tăng theo cấp số nhân.</p>
+                            <div class="chart-wrapper p-2 relative w-full h-80 sm:h-96">
+                                <canvas id="richterChart"></canvas>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                contentContainer.innerHTML = `
+                    <div class="animate-slide-in">
+                        <!-- Header Section -->
+                        <div class="flex items-start gap-5 mb-8 border-b border-stone-100 pb-8">
+                            <span class="text-5xl sm:text-6xl filter drop-shadow-md bg-white rounded-3xl p-2">${group.icon}</span>
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="bg-${themeColor}-100 text-${themeColor}-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide">Nhóm ${group.id}</span>
+                                    <span class="text-stone-400 text-xs font-semibold uppercase tracking-wide">${group.role}</span>
+                                </div>
+                                <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-800 mb-2 leading-tight">${group.title}</h2>
+                                <p class="text-stone-500 text-lg">Khám phá chi tiết kiến thức và ví dụ.</p>
+                            </div>
+                        </div>
+
+                        <!-- Intro Box -->
+                        <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 text-stone-700 leading-relaxed mb-10 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-blue-400"></div>
+                            <h4 class="text-blue-900 font-bold mb-2 text-sm uppercase tracking-wide flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/></svg>
+                                Giới thiệu
+                            </h4>
+                            ${group.content.intro}
+                        </div>
+
+                        <div class="grid xl:grid-cols-2 gap-10">
+                            <!-- Theory Column -->
+                            <div>
+                                <h3 class="text-xl font-bold text-stone-800 mb-5 flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-lg bg-stone-800 text-white flex items-center justify-center text-sm font-bold shadow-md">1</span>
+                                    Lý thuyết cốt lõi
+                                </h3>
+                                <div class="space-y-5">
+                                    ${group.content.theory.map(t => `
+                                        <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-${themeColor}-400 to-${themeColor}-600"></div>
+                                            <div class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">${t.label}</div>
+                                            <div class="text-lg text-stone-800 font-medium leading-relaxed bg-stone-50 p-3 rounded-lg border border-stone-100">${t.text}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Practice Column -->
+                            <div>
+                                <h3 class="text-xl font-bold text-stone-800 mb-5 flex items-center gap-3">
+                                    <span class="w-8 h-8 rounded-lg bg-${themeColor}-600 text-white flex items-center justify-center text-sm font-bold shadow-md">2</span>
+                                    Ví dụ áp dụng
+                                </h3>
+                                <div class="space-y-5">
+                                    ${group.content.examples.map((ex, idx) => `
+                                        <div class="bg-white p-1 rounded-xl border border-stone-200 shadow-sm">
+                                            <div class="p-4 pb-2">
+                                                <div class="font-bold text-stone-800 text-lg mb-3">${ex.q}</div>
+                                                <button onclick="document.getElementById('ans-${idx}').classList.toggle('hidden'); app.renderMath()" 
+                                                        class="group flex items-center gap-2 text-xs font-bold text-${themeColor}-600 uppercase tracking-wide hover:bg-${themeColor}-50 px-3 py-2 rounded-lg w-full transition-colors">
+                                                    <span>Xem đáp án</span>
+                                                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                                </button>
+                                            </div>
+                                            <div id="ans-${idx}" class="hidden bg-stone-50 m-1 p-4 rounded-lg border-t border-stone-100 animate-fade-in-up">
+                                                <div class="mb-2 text-stone-500 text-sm flex gap-2">
+                                                    <span class="font-bold bg-stone-200 text-stone-600 text-[10px] px-1.5 py-0.5 rounded uppercase">Gợi ý</span> 
+                                                    ${ex.hint}
+                                                </div>
+                                                <div class="font-bold text-teal-700 bg-teal-50 border border-teal-100 p-3 rounded-md flex items-center gap-2">
+                                                    <svg class="w-5 h-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                                    Kết quả: ${ex.a}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        ${vizHtml}
+                    </div>
+                `;
+
+                this.renderMath();
+
+                if (group.content.vizType === 'logGraph') this.initLogChart();
+                if (group.content.vizType === 'richterChart') this.initRichterChart();
+            },
+
+            renderSummary() {
+                const container = document.getElementById('formula-grid');
+                const allTheory = data.groups.map(g => ({
+                    title: g.title,
+                    color: g.color === 'secondary' ? 'orange' : 'teal',
+                    formulas: g.content.theory
+                }));
+
+                container.innerHTML = allTheory.map(t => `
+                    <div class="bg-white rounded-2xl border border-stone-100 shadow-sm hover:shadow-lg transition-shadow overflow-hidden group">
+                        <div class="bg-${t.color}-50 px-6 py-4 border-b border-${t.color}-100 flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-${t.color}-500"></div>
+                            <span class="font-bold text-${t.color}-900 tracking-tight text-lg">${t.title}</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            ${t.formulas.map(f => `
+                                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-dashed border-stone-100 pb-3 last:border-0 last:pb-0">
+                                    <span class="text-[11px] font-extrabold text-stone-400 uppercase tracking-widest w-32 shrink-0 pt-1">${f.label}</span>
+                                    <span class="text-stone-800 text-right flex-1 break-words font-medium bg-stone-50/50 px-2 rounded">${f.text}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+                
+                this.renderMath();
+            },
+
+            initLogChart() {
+                const ctx = document.getElementById('logChart').getContext('2d');
+                const slider = document.getElementById('baseSlider');
+                const valueLabel = document.getElementById('baseValue');
+
+                const generateData = (base) => {
+                    let points = [];
+                    for (let x = 0.1; x <= 10; x += 0.1) {
+                        if (base === 1) base = 1.01; 
+                        points.push({x: x, y: Math.log(x) / Math.log(base)});
+                    }
+                    return points;
+                };
+
+                const chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        datasets: [{
+                            label: 'y = logₐ(x)',
+                            data: generateData(2),
+                            borderColor: '#0f766e', // Teal 700
+                            backgroundColor: (context) => {
+                                const ctx = context.chart.ctx;
+                                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                                gradient.addColorStop(0, 'rgba(20, 184, 166, 0.2)');
+                                gradient.addColorStop(1, 'rgba(20, 184, 166, 0)');
+                                return gradient;
+                            },
+                            borderWidth: 3,
+                            pointRadius: 0,
+                            pointHoverRadius: 6,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { intersect: false, mode: 'index' },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { 
+                                backgroundColor: 'rgba(28, 25, 23, 0.9)', 
+                                padding: 12,
+                                cornerRadius: 8,
+                                displayColors: false,
+                            }
+                        },
+                        scales: {
+                            x: { 
+                                type: 'linear', min: 0, max: 10, 
+                                grid: { color: '#f5f5f4' },
+                                title: { display: true, text: 'x', font: {weight: 'bold'} }
+                            },
+                            y: { 
+                                min: -3, max: 3, 
+                                grid: { color: '#f5f5f4' },
+                                title: { display: true, text: 'y', font: {weight: 'bold'} }
+                            }
+                        }
+                    }
+                });
+
+                slider.addEventListener('input', (e) => {
+                    const val = parseFloat(e.target.value);
+                    valueLabel.textContent = val.toFixed(1);
+                    if (val === 1) return;
+                    
+                    chart.data.datasets[0].data = generateData(val);
+                    chart.update();
+                });
+            },
+
+            initRichterChart() {
+                const ctx = document.getElementById('richterChart').getContext('2d');
+                const labels = ['Độ 1', 'Độ 2', 'Độ 3', 'Độ 4', 'Độ 5'];
+                const dataPoints = [10, 100, 1000, 10000, 100000]; 
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Biên độ rung chấn (A)',
+                            data: dataPoints,
+                            backgroundColor: ['#fff7ed', '#ffedd5', '#fed7aa', '#fdba74', '#fb923c'], // Orange scale
+                            borderColor: '#ea580c',
+                            borderWidth: 1,
+                            borderRadius: 6,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: { 
+                                type: 'logarithmic',
+                                title: { display: true, text: 'Biên độ (Scale Logarit)', font: {weight: 'bold'} },
+                                grid: { color: '#f5f5f4' }
+                            },
+                            y: { grid: { display: false } }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                                padding: 12,
+                                cornerRadius: 8
+                            }
+                        }
+                    }
+                });
+            }
+        };
+
+        // Start App and Render initial math
+        document.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+    </script>
+</body>
+</html>
