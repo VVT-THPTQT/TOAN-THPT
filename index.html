@@ -1,285 +1,330 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>VVT – TOÁN THPT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    body {
-      background: #f4f6f8;
-      color: #333;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      background: #0b79c1;
-      border-top: 8px solid #f2a6a6;
-    }
-
-    .navbar {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      padding: 10px 15px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: white;
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .logo img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: white;
-      padding: 3px;
-    }
-
-    nav {
-      margin-left: auto;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 15px;
-    }
-
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
-
-    /* ===== BANNER ===== */
-    .banner {
-      position: relative;
-      height: 380px;
-      background: url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f")
-        center / cover no-repeat;
-    }
-
-    .banner-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.25);
-    }
-
-    .banner-content {
-      position: relative;
-      max-width: 1200px;
-      margin: auto;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      color: white;
-    }
-
-    .banner-content h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-
-    .banner-content p {
-      font-size: 18px;
-      max-width: 600px;
-    }
-
-    /* ===== MAIN ===== */
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px 15px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .card h2 {
-      background: #0b79c1;
-      color: white;
-      padding: 12px;
-      font-size: 18px;
-    }
-
-    .card-content {
-      padding: 15px;
-    }
-
-    .card iframe,
-    .card img {
-      width: 100%;
-      border: none;
-    }
-
-    .schedule {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-    }
-
-    .schedule th {
-      background: #00e5ff;
-      padding: 8px;
-      border: 1px solid #ccc;
-      color: red;
-    }
-
-    .schedule td {
-      padding: 8px;
-      border: 1px solid #ccc;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #eaeaea;
-      font-size: 14px;
-      margin-top: 30px;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      nav ul {
-        gap: 12px;
-        font-size: 13px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .banner-content h1 {
-        font-size: 26px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathMaster - Học Toán THPT</title>
+    <!-- Tailwind CSS (Dùng CDN cho nhanh gọn) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome cho icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Nunito', sans-serif; background-color: #f3f4f6; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .active-step { color: #2563eb; font-weight: bold; border-bottom: 2px solid #2563eb; }
+    </style>
 </head>
+<body class="flex flex-col min-h-screen">
 
-<body>
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="app.reset()">
+                <div class="bg-blue-600 text-white p-2 rounded-lg">
+                    <i class="fa-solid fa-square-root-variable text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800 tracking-tight">MathMaster</h1>
+            </div>
+            <nav class="hidden md:flex gap-6 text-sm font-semibold text-gray-600">
+                <a href="#" class="hover:text-blue-600 transition">Trang chủ</a>
+                <a href="#" class="hover:text-blue-600 transition">Luyện đề thi</a>
+                <a href="#" class="hover:text-blue-600 transition">Tài liệu</a>
+                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Đăng nhập</a>
+            </nav>
+        </div>
+    </header>
 
-<!-- ===== HEADER ===== -->
-<header>
-  <div class="navbar">
-    <div class="logo">
-      <img src="logo_truong.png" alt="Logo trường">
-      <span>VVT_TOÁN THPT-QT</span>
-    </div>
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
+        
+        <!-- Breadcrumb & Progress -->
+        <div class="mb-8" id="breadcrumb-container">
+            <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                <button onclick="app.reset()" class="hover:text-blue-600"><i class="fa-solid fa-home"></i></button>
+                <span id="crumb-grade" class="hidden"><i class="fa-solid fa-chevron-right text-xs mx-2"></i> <span class="crumb-text"></span></span>
+                <span id="crumb-chapter" class="hidden"><i class="fa-solid fa-chevron-right text-xs mx-2"></i> <span class="crumb-text"></span></span>
+                <span id="crumb-lesson" class="hidden"><i class="fa-solid fa-chevron-right text-xs mx-2"></i> <span class="crumb-text"></span></span>
+            </div>
+            
+            <div class="text-center mb-10">
+                <h2 id="page-title" class="text-3xl font-extrabold text-gray-800">Chọn Khối Lớp Của Bạn</h2>
+                <p id="page-subtitle" class="text-gray-500 mt-2">Hệ thống kiến thức bám sát chương trình GDPT mới</p>
+            </div>
+        </div>
 
-    <nav>
-      <ul>
-        <li><a href="#">Trang chủ</a></li>
-        <li><a href="#">TOÁN 12</a></li>
-        <li><a href="#">TOÁN 11</a></li>
-        <li><a href="#">TOÁN 10</a></li>
-        <li><a href="#">THỜI KHÓA BIỂU</a></li>
-        <li><a href="#">TỰ RÈN LUYỆN</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+        <!-- VIEW 1: SELECT GRADE (KHỐI LỚP) -->
+        <div id="view-grades" class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
+            <!-- Grade 10 -->
+            <div onclick="app.selectGrade(10)" class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 cursor-pointer card-hover transition-all group">
+                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">10</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Toán Lớp 10</h3>
+                <p class="text-gray-500 text-sm">Mệnh đề, Tập hợp, Vectơ, Hàm số bậc hai, Thống kê...</p>
+                <div class="mt-4 text-blue-600 font-semibold text-sm flex items-center gap-1">Bắt đầu học <i class="fa-solid fa-arrow-right"></i></div>
+            </div>
 
-<!-- ===== BANNER ===== -->
-<section class="banner">
-  <div class="banner-overlay"></div>
-  <div class="banner-content">
-    <div>
-      <h1>HỌC TẬP TOÁN THPT</h1>
-      <p>
-        Website hỗ trợ học sinh Toán THPT – bài giảng rõ ràng,
-        lời giải sư phạm, học tập chủ động và hiệu quả.
-      </p>
-    </div>
-  </div>
-</section>
+            <!-- Grade 11 -->
+            <div onclick="app.selectGrade(11)" class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 cursor-pointer card-hover transition-all group">
+                <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-teal-600 group-hover:text-white transition-colors">11</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Toán Lớp 11</h3>
+                <p class="text-gray-500 text-sm">Lượng giác, Dãy số, Giới hạn, Mũ & Logarit, Xác suất...</p>
+                <div class="mt-4 text-teal-600 font-semibold text-sm flex items-center gap-1">Bắt đầu học <i class="fa-solid fa-arrow-right"></i></div>
+            </div>
 
-<!-- ===== MAIN ===== -->
-<main>
-  <div class="grid">
+            <!-- Grade 12 -->
+            <div onclick="app.selectGrade(12)" class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 cursor-pointer card-hover transition-all group">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">12</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Toán Lớp 12</h3>
+                <p class="text-gray-500 text-sm">Khảo sát hàm số, Nguyên hàm, Tích phân, Số phức...</p>
+                <div class="mt-4 text-indigo-600 font-semibold text-sm flex items-center gap-1">Bắt đầu học <i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+        </div>
 
-    <!-- VIDEO -->
-    <div class="card">
-      <h2>🎬 Hoạt động lớp học</h2>
-      <div class="card-content">
-        <iframe height="260"
-          src="https://www.youtube.com/watch?v=1Mq5BqM5ClA&t=1s"
-          allowfullscreen></iframe>
-      </div>
-    </div>
+        <!-- VIEW 2: SELECT CHAPTER (CHƯƠNG) -->
+        <div id="view-chapters" class="hidden fade-in">
+            <button onclick="app.reset()" class="mb-4 text-gray-500 hover:text-blue-600 flex items-center gap-2 font-medium"><i class="fa-solid fa-arrow-left"></i> Quay lại chọn khối</button>
+            <div id="chapters-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript will inject chapters here -->
+            </div>
+        </div>
 
-    <!-- SCHEDULE -->
-    <div class="card">
-      <h2>📅 Thời khóa biểu cá nhân</h2>
-      <div class="card-content">
-        <table class="schedule">
-          <tr>
-            <th>TIẾT</th>
-            <th>THỨ HAI</th>
-            <th>THỨ BA</th>
-            <th>THỨ TƯ</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>10A2</td>
-            <td>11A5</td>
-            <td>11A6</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>10A2</td>
-            <td>11A5</td>
-            <td>11A6</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+        <!-- VIEW 3: SELECT LESSON (BÀI HỌC) -->
+        <div id="view-lessons" class="hidden fade-in">
+            <button onclick="app.backToChapters()" class="mb-4 text-gray-500 hover:text-blue-600 flex items-center gap-2 font-medium"><i class="fa-solid fa-arrow-left"></i> Quay lại chọn chương</button>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Lesson List -->
+                <div class="w-full lg:w-1/3 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-fit">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 font-bold text-gray-700">Danh sách bài học</div>
+                    <div id="lessons-list" class="divide-y divide-gray-100">
+                        <!-- Javascript will inject lessons here -->
+                    </div>
+                </div>
 
-  </div>
-</main>
+                <!-- Preview / Action Area -->
+                <div class="w-full lg:w-2/3">
+                    <div id="lesson-detail-placeholder" class="bg-white rounded-xl shadow-sm border border-gray-200 p-10 text-center h-full flex flex-col justify-center items-center min-h-[300px]">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486831.png" alt="Math" class="w-32 h-32 opacity-20 mb-4">
+                        <h3 class="text-xl font-bold text-gray-400">Chọn một bài học bên trái để xem nội dung</h3>
+                    </div>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  © 2025 – Website cá nhân Giáo viên Toán THPT | Thiết kế phục vụ giáo dục
-</footer>
+                    <!-- Actual Content (Hidden initially) -->
+                    <div id="lesson-content-area" class="hidden bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+                        <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded mb-3">Lý thuyết & Bài tập</span>
+                        <h2 id="content-title" class="text-2xl font-bold text-gray-800 mb-4">Tên bài học</h2>
+                        <div class="prose max-w-none text-gray-600 mb-6">
+                            <p>Nội dung tóm tắt của bài học sẽ hiển thị ở đây. Bao gồm các định nghĩa, định lý và ví dụ minh họa.</p>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
+                                <p class="font-bold text-yellow-700">Ghi nhớ:</p>
+                                <p>Công thức quan trọng của bài học này.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition"><i class="fa-solid fa-book-open mr-2"></i> Học Lý Thuyết</button>
+                            <button class="flex-1 bg-white border-2 border-blue-600 text-blue-600 py-3 rounded-lg font-bold hover:bg-blue-50 transition"><i class="fa-solid fa-pen-to-square mr-2"></i> Làm Bài Tập</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-bold text-white text-lg mb-2">MathMaster</p>
+            <p class="text-sm text-gray-500">Đồng hành cùng học sinh THPT chinh phục môn Toán.</p>
+            <div class="flex justify-center gap-4 mt-4">
+                <a href="#" class="hover:text-white"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-white"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-white"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DATA & LOGIC SCRIPT -->
+    <script>
+        // 1. Dữ liệu Giả lập (Bạn có thể mở rộng thêm)
+        const curriculum = {
+            10: [
+                { id: "c1", title: "Chương 1: Mệnh đề và Tập hợp", lessons: ["Bài 1: Mệnh đề", "Bài 2: Tập hợp", "Bài 3: Các phép toán trên tập hợp"] },
+                { id: "c2", title: "Chương 2: Bất phương trình bậc nhất", lessons: ["Bài 1: Bất phương trình bậc nhất hai ẩn", "Bài 2: Hệ bất phương trình"] },
+                { id: "c3", title: "Chương 3: Hàm số bậc hai", lessons: ["Bài 1: Hàm số và đồ thị", "Bài 2: Hàm số bậc hai"] },
+                { id: "c4", title: "Chương 4: Vectơ", lessons: ["Bài 1: Khái niệm vectơ", "Bài 2: Tổng và hiệu của hai vectơ", "Bài 3: Tích của vectơ với một số"] }
+            ],
+            11: [
+                { id: "c1", title: "Chương 1: Lượng giác", lessons: ["Bài 1: Góc lượng giác", "Bài 2: Giá trị lượng giác", "Bài 3: Công thức lượng giác", "Bài 4: Hàm số lượng giác"] },
+                { id: "c2", title: "Chương 2: Dãy số - Cấp số", lessons: ["Bài 1: Dãy số", "Bài 2: Cấp số cộng", "Bài 3: Cấp số nhân"] },
+                { id: "c3", title: "Chương 3: Giới hạn - Hàm số liên tục", lessons: ["Bài 1: Giới hạn của dãy số", "Bài 2: Giới hạn của hàm số", "Bài 3: Hàm số liên tục"] },
+                { id: "c4", title: "Chương 4: Hàm số mũ và Logarit", lessons: ["Bài 1: Phép tính lũy thừa", "Bài 2: Phép tính lôgarit", "Bài 3: Hàm số mũ và hàm số lôgarit", "Bài 4: Phương trình mũ và lôgarit"] }
+            ],
+            12: [
+                { id: "c1", title: "Chương 1: Ứng dụng đạo hàm", lessons: ["Bài 1: Tính đơn điệu của hàm số", "Bài 2: Cực trị của hàm số", "Bài 3: Giá trị lớn nhất - nhỏ nhất"] },
+                { id: "c2", title: "Chương 2: Hàm số lũy thừa - Mũ - Logarit", lessons: ["Bài 1: Lũy thừa", "Bài 2: Hàm số lũy thừa", "Bài 3: Logarit"] },
+                { id: "c3", title: "Chương 3: Nguyên hàm - Tích phân", lessons: ["Bài 1: Nguyên hàm", "Bài 2: Tích phân", "Bài 3: Ứng dụng tích phân"] },
+                { id: "c4", title: "Chương 4: Số phức", lessons: ["Bài 1: Số phức", "Bài 2: Cộng, trừ và nhân số phức", "Bài 3: Phép chia số phức"] }
+            ]
+        };
+
+        // 2. Ứng dụng Logic
+        const app = {
+            state: {
+                grade: null,
+                chapterIdx: null,
+                lessonIdx: null
+            },
+
+            // Khởi động lại
+            reset() {
+                this.state = { grade: null, chapterIdx: null, lessonIdx: null };
+                this.updateUI('grades');
+                this.updateBreadcrumb();
+            },
+
+            // Chọn Khối
+            selectGrade(grade) {
+                this.state.grade = grade;
+                this.renderChapters(grade);
+                this.updateUI('chapters');
+                this.updateBreadcrumb();
+            },
+
+            // Quay lại danh sách chương
+            backToChapters() {
+                this.state.lessonIdx = null;
+                this.state.chapterIdx = null;
+                this.updateUI('chapters');
+                this.updateBreadcrumb();
+            },
+
+            // Render danh sách chương ra màn hình
+            renderChapters(grade) {
+                const container = document.getElementById('chapters-grid');
+                const chapters = curriculum[grade];
+                
+                // Tiêu đề trang
+                document.getElementById('page-title').innerText = `Toán Lớp ${grade}`;
+                document.getElementById('page-subtitle').innerText = "Chọn chương bạn muốn học";
+
+                container.innerHTML = chapters.map((chap, idx) => `
+                    <div onclick="app.selectChapter(${idx})" class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:border-blue-500 hover:shadow-md cursor-pointer transition-all group h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded uppercase group-hover:bg-blue-100 group-hover:text-blue-600 transition">Chương ${idx + 1}</span>
+                            <i class="fa-solid fa-book-open text-gray-300 group-hover:text-blue-500 transition"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-2 group-hover:text-blue-700 transition">${chap.title}</h4>
+                        <p class="text-sm text-gray-500 mb-4 flex-grow">${chap.lessons.length} bài học</p>
+                        <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-blue-500 h-full w-0 group-hover:w-full transition-all duration-700"></div>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            // Chọn Chương
+            selectChapter(idx) {
+                this.state.chapterIdx = idx;
+                this.renderLessons(this.state.grade, idx);
+                this.updateUI('lessons');
+                this.updateBreadcrumb();
+            },
+
+            // Render danh sách bài học
+            renderLessons(grade, chapterIdx) {
+                const container = document.getElementById('lessons-list');
+                const chapter = curriculum[grade][chapterIdx];
+                
+                // Tiêu đề trang
+                document.getElementById('page-title').innerText = chapter.title;
+                document.getElementById('page-subtitle').innerText = "Chọn bài học để bắt đầu";
+
+                // Reset content view
+                document.getElementById('lesson-detail-placeholder').classList.remove('hidden');
+                document.getElementById('lesson-content-area').classList.add('hidden');
+
+                container.innerHTML = chapter.lessons.map((lesson, idx) => `
+                    <div onclick="app.selectLesson(${idx})" class="lesson-item p-4 cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3 group border-l-4 border-transparent hover:border-blue-500" id="lesson-item-${idx}">
+                        <div class="w-8 h-8 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center text-xs font-bold group-hover:bg-blue-600 group-hover:text-white transition">${idx + 1}</div>
+                        <span class="text-sm font-medium text-gray-700 group-hover:text-blue-700 transition">${lesson}</span>
+                    </div>
+                `).join('');
+            },
+
+            // Chọn Bài học (Hiển thị nội dung)
+            selectLesson(idx) {
+                this.state.lessonIdx = idx;
+                const chapter = curriculum[this.state.grade][this.state.chapterIdx];
+                const lessonName = chapter.lessons[idx];
+
+                // Highlight active item
+                document.querySelectorAll('.lesson-item').forEach(el => {
+                    el.classList.remove('bg-blue-50', 'border-blue-500');
+                    el.classList.add('border-transparent');
+                });
+                const activeItem = document.getElementById(`lesson-item-${idx}`);
+                activeItem.classList.add('bg-blue-50', 'border-blue-500');
+                activeItem.classList.remove('border-transparent');
+
+                // Show Content
+                document.getElementById('lesson-detail-placeholder').classList.add('hidden');
+                document.getElementById('lesson-content-area').classList.remove('hidden');
+                document.getElementById('content-title').innerText = lessonName;
+                
+                // Scroll to content on mobile
+                if(window.innerWidth < 1024) {
+                    document.getElementById('lesson-content-area').scrollIntoView({behavior: 'smooth'});
+                }
+                
+                this.updateBreadcrumb();
+            },
+
+            // Chuyển đổi màn hình
+            updateUI(view) {
+                ['grades', 'chapters', 'lessons'].forEach(v => {
+                    document.getElementById(`view-${v}`).classList.add('hidden');
+                });
+                document.getElementById(`view-${view}`).classList.remove('hidden');
+            },
+
+            // Cập nhật thanh điều hướng (Breadcrumb)
+            updateBreadcrumb() {
+                const els = {
+                    grade: document.getElementById('crumb-grade'),
+                    chapter: document.getElementById('crumb-chapter'),
+                    lesson: document.getElementById('crumb-lesson')
+                };
+
+                // Reset all
+                els.grade.classList.add('hidden');
+                els.chapter.classList.add('hidden');
+                els.lesson.classList.add('hidden');
+
+                if (this.state.grade) {
+                    els.grade.classList.remove('hidden');
+                    els.grade.querySelector('.crumb-text').innerText = `Lớp ${this.state.grade}`;
+                }
+                
+                if (this.state.chapterIdx !== null) {
+                    els.chapter.classList.remove('hidden');
+                    // Lấy tên chương ngắn gọn (VD: Chương 1)
+                    const fullTitle = curriculum[this.state.grade][this.state.chapterIdx].title;
+                    const shortTitle = fullTitle.split(':')[0]; 
+                    els.chapter.querySelector('.crumb-text').innerText = shortTitle;
+                }
+
+                if (this.state.lessonIdx !== null) {
+                    els.lesson.classList.remove('hidden');
+                    const fullLesson = curriculum[this.state.grade][this.state.chapterIdx].lessons[this.state.lessonIdx];
+                    const shortLesson = fullLesson.split(':')[0];
+                    els.lesson.querySelector('.crumb-text').innerText = shortLesson;
+                }
+            }
+        };
+    </script>
 </body>
 </html>
-
-
-
-
-
