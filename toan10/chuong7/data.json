@@ -1,0 +1,31 @@
+{
+  "chuong": 7,
+  "ten_chuong": "Bất phương trình bậc hai một ẩn",
+  "bai_hoc": [
+    {
+      "id": 1,
+      "tieu_de": "Dấu của tam thức bậc hai",
+      "tom_tat": "Tam thức bậc hai $f(x)=ax^2+bx+c$ ($a \\neq 0$) có dấu phụ thuộc vào biệt thức $\\Delta$[cite: 8, 17]. Nếu $\\Delta < 0$, $f(x)$ luôn cùng dấu với hệ số $a$[cite: 18]. Nếu $\\Delta > 0$, $f(x)$ trái dấu với $a$ trong khoảng hai nghiệm[cite: 20, 21].",
+      "ghi_nho": "Quy tắc: 'Trong trái - Ngoài cùng' đối với tam thức có hai nghiệm phân biệt[cite: 21].",
+      "bai_tap": [
+        {
+          "cau_hoi": "Xét dấu tam thức: $f(x) = 2x^2 + 6x - 8$",
+          "loai": "Trac nghiem",
+          "dap_an": "Trái dấu với a trên khoảng (-4; 1)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "tieu_de": "Bất phương trình bậc hai một ẩn",
+      "tom_tat": "Bất phương trình bậc hai có dạng $ax^2+bx+c > 0$ (hoặc $\\ge, <, \\le$). Để giải, ta xét dấu tam thức bậc hai rồi chọn tập hợp các giá trị $x$ thỏa mãn dấu của bất phương trình[cite: 75].",
+      "ghi_nho": "Giải bất phương trình bậc hai là tìm tập nghiệm của nó bằng cách xét dấu tam thức tương ứng[cite: 74, 75].",
+      "bai_tap": [
+        {
+          "cau_hoi": "Giải bất phương trình: $-x^2 + 2x + 1 > 0$ [cite: 80]",
+          "goi_y": "Tính $\\Delta'$, tìm nghiệm và xét dấu hệ số $a$."
+        }
+      ]
+    }
+  ]
+}
