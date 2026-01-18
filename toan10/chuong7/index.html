@@ -1,0 +1,137 @@
+// 1. Dữ liệu chi tiết cho Chương 7 - Toán 10
+        const curriculum = {
+            10: [
+                // Các chương khác giữ nguyên...
+                { 
+                    id: "c7", 
+                    title: "Chương 7: Bất phương trình bậc hai một ẩn", 
+                    lessons: [
+                        {
+                            name: "Bài 1: Dấu của tam thức bậc hai",
+                            summary: `
+                                <div class="space-y-4">
+                                    <p><b>1. Định nghĩa:</b> Tam thức bậc hai đối với $x$ là biểu thức dạng $f(x)=ax^2+bx+c$ ($a \\neq 0$)[cite: 8].</p>
+                                    <p><b>2. Định lí về dấu:</b> Xét $\\Delta = b^2 - 4ac$[cite: 17]:</p>
+                                    <ul class="list-disc ml-6 space-y-2">
+                                        <li>Nếu $\\Delta < 0$: $f(x)$ cùng dấu với hệ số $a$ với mọi $x \\in \\mathbb{R}$[cite: 18].</li>
+                                        <li>Nếu $\\Delta = 0$: $f(x)$ cùng dấu với hệ số $a$ với mọi $x \\neq -\\frac{b}{2a}$[cite: 19].</li>
+                                        <li>Nếu $\\Delta > 0$: $f(x)$ có 2 nghiệm phân biệt $x_1, x_2$. Trong khoảng $(x_1; x_2)$, $f(x)$ <b>trái dấu</b> với $a$. Ngoài khoảng đó, $f(x)$ <b>cùng dấu</b> với $a$[cite: 20, 21].</li>
+                                    </ul>
+                                </div>
+                            `,
+                            note: "Quy tắc nhớ nhanh: 'Trong trái - Ngoài cùng' (Áp dụng khi tam thức có 2 nghiệm phân biệt).",
+                            practice_link: "#"
+                        },
+                        {
+                            name: "Bài 2: Bất phương trình bậc hai một ẩn",
+                            summary: `
+                                <div class="space-y-4">
+                                    <p><b>1. Định nghĩa:</b> Bất phương trình bậc hai ẩn $x$ là bất phương trình có dạng $ax^2+bx+c > 0$ (hoặc $\\ge, <, \\le$) với $a \\neq 0$[cite: 71].</p>
+                                    <p><b>2. Cách giải:</b> Để giải bất phương trình bậc hai, ta cần xét dấu tam thức bậc hai tương ứng, từ đó suy ra tập nghiệm[cite: 75].</p>
+                                    <p><b>3. Ứng dụng:</b> Giải hệ bất phương trình, tính lợi nhuận kinh doanh, tính toán quỹ đạo (pháo binh, bóng ném)[cite: 82].</p>
+                                </div>
+                            `,
+                            note: "Nghiệm của tam thức bậc hai chính là giao điểm của đồ thị Parabol với trục hoành[cite: 137].",
+                            practice_link: "#"
+                        }
+                    ] 
+                }
+            ],
+            11: [], // Giữ nguyên các khối khác
+            12: []
+        };
+
+        const app = {
+            state: { grade: null, chapterIdx: null, lessonIdx: null },
+
+            reset() {
+                this.state = { grade: null, chapterIdx: null, lessonIdx: null };
+                this.updateUI('grades');
+                this.updateBreadcrumb();
+            },
+
+            selectGrade(grade) {
+                this.state.grade = grade;
+                this.renderChapters(grade);
+                this.updateUI('chapters');
+                this.updateBreadcrumb();
+            },
+
+            backToChapters() {
+                this.state.chapterIdx = null;
+                this.updateUI('chapters');
+                this.updateBreadcrumb();
+            },
+
+            renderChapters(grade) {
+                const container = document.getElementById('chapters-grid');
+                const chapters = curriculum[grade] || [];
+                document.getElementById('page-title').innerText = `Toán Lớp ${grade}`;
+                
+                container.innerHTML = chapters.map((chap, idx) => `
+                    <div onclick="app.selectChapter(${idx})" class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:border-blue-500 cursor-pointer transition-all group">
+                        <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded">Chương ${chap.id.replace('c','')}</span>
+                        <h4 class="font-bold text-lg text-gray-800 mt-2">${chap.title}</h4>
+                        <p class="text-sm text-gray-500">${chap.lessons.length} bài học</p>
+                    </div>
+                `).join('');
+            },
+
+            selectChapter(idx) {
+                this.state.chapterIdx = idx;
+                this.renderLessons(this.state.grade, idx);
+                this.updateUI('lessons');
+                this.updateBreadcrumb();
+            },
+
+            renderLessons(grade, chapterIdx) {
+                const container = document.getElementById('lessons-list');
+                const chapter = curriculum[grade][chapterIdx];
+                document.getElementById('page-title').innerText = chapter.title;
+
+                document.getElementById('lesson-detail-placeholder').classList.remove('hidden');
+                document.getElementById('lesson-content-area').classList.add('hidden');
+
+                container.innerHTML = chapter.lessons.map((lesson, idx) => `
+                    <div onclick="app.selectLesson(${idx})" class="lesson-item p-4 cursor-pointer hover:bg-blue-50 flex items-center gap-3 border-l-4 border-transparent" id="lesson-item-${idx}">
+                        <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold">${idx + 1}</div>
+                        <span class="text-sm font-medium text-gray-700">${lesson.name}</span>
+                    </div>
+                `).join('');
+            },
+
+            selectLesson(idx) {
+                this.state.lessonIdx = idx;
+                const lesson = curriculum[this.state.grade][this.state.chapterIdx].lessons[idx];
+
+                document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('bg-blue-50', 'border-blue-500'));
+                document.getElementById(`lesson-item-${idx}`).classList.add('bg-blue-50', 'border-blue-500');
+
+                document.getElementById('lesson-detail-placeholder').classList.add('hidden');
+                const contentArea = document.getElementById('lesson-content-area');
+                contentArea.classList.remove('hidden');
+
+                document.getElementById('content-title').innerText = lesson.name;
+                contentArea.querySelector('.prose').innerHTML = `
+                    ${lesson.summary}
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
+                        <p class="font-bold text-yellow-700">Ghi nhớ:</p>
+                        <p class="text-yellow-800">${lesson.note}</p>
+                    </div>
+                `;
+
+                // Gọi MathJax render lại công thức sau khi dán nội dung mới
+                if (window.MathJax) { MathJax.Hub.Queue(["Typeset", MathJax.Hub, contentArea]); }
+
+                this.updateBreadcrumb();
+            },
+
+            updateUI(view) {
+                ['grades', 'chapters', 'lessons'].forEach(v => document.getElementById(`view-${v}`).classList.add('hidden'));
+                document.getElementById(`view-${view}`).classList.remove('hidden');
+            },
+
+            updateBreadcrumb() {
+                // Giữ nguyên logic Breadcrumb của bạn...
+            }
+        };
